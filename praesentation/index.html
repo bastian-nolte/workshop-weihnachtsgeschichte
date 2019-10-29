@@ -1,0 +1,314 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>reveal.js</title>
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/monokai.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <style type="text/css">
+        body {
+            /*background: #1c1e20;*/
+        }
+
+        .reveal h1 {
+            font-size: 1.5em;
+        }
+
+        .reveal h2 {
+            font-size: 1.2em;
+            text-transform: unset;
+        }
+
+        .reveal p {
+            font-size: 0.8em;
+            text-align: left;
+        }
+
+        .reveal h3 {
+            font-size: 1.1em;
+            text-transform: unset;
+        }
+
+        .reveal li {
+            padding-top: 0.5em;
+            list-style: none;
+            padding-left: 1.5em;
+            text-indent: -1.5em;
+        }
+
+        .reveal li:before {
+            background-size: contain;
+            content: '';
+            display: inline-block;
+            margin-right: 0.5em;
+            height: 1em;
+            width: 1em;
+            background-image: url("data-src/santa-icon.png");
+        }
+
+        .reveal li ul {
+            /*padding-top: 1em;*/
+        }
+
+        .reveal li li {
+            font-size: 0.7em;
+            margin-bottom: 0.5em;
+        }
+
+        .reveal pre {
+            /*font-size: 0.5em;*/
+        }
+
+        .reveal p.bildunterschrift {
+            font-size: 0.4em;
+        }
+
+        tag {
+            border: 1px solid cornflowerblue;
+            border-radius: 5px;
+            background-color: lightskyblue;
+            color: darkslategray;
+            margin-right: 0.5em;
+        }
+
+        .tiny {
+            font-size: 0.5em;
+        }
+
+        .middle {
+            font-size: 0.8em;
+        }
+
+        .right {
+            text-align: right;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Kotlin und ReactiveX</h1>
+            <img data-src="data-src/Rx_Logo_S.png" style="border: 0; background-color: #191919; margin-right: 2em"/>
+            <img data-src="data-src/Kotlin-logo.svg" style="border: 0; width: 100px;  background-color: #191919"/>
+            <h2>Eine Weihnachtsgeschichte</h2>
+        </section>
+        <section data-background-image="data-src/xmas-2928142.jpg">
+            <div style="background-color: rgba(50,50,50,0.6); border-radius: 0.3em;">
+                <h1>Was erwartet Euch in diesem Workshop?</h1>
+                <ul>
+                    <li class="fragment fade-in-then-semi-out">Wir giessen gemeinsam eine Weihnachtsgeschichte in Code</li>
+                    <li class="fragment fade-in-then-semi-out">Eingesetzte Technologien
+                        <ul>
+                            <li>Programmiersprache > Kotlin</li>
+                            <li>asynchrone Programmierung mit «observable streams» <br/>mit ReaxtiveX</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="bildunterschrift">Hintergrundbild von <a
+                        href="https://pixabay.com/de/users/Larisa-K-1107275/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2928142">Larisa
+                    Koshkina</a> auf <a
+                        href="https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2928142">Pixabay</a>
+                </p>
+                <p class="bildunterschrift">Rentier-Icon von <a
+                        href="https://www.cleanpng.com/png-christmas-icon-deer-icon-santa-icon-7389369/download-png.html">www.cleanpng.com</a>
+            </div>
+        </section>
+        <section>
+            <h1>Methodik</h1>
+            <ul>
+                <li class="fragment fade-in-then-semi-out">Einführung in Technologiefragment</li>
+                <ul class="fragment fade-in-then-semi-out">
+                    <li>z.B. Interfaces, Classes, Sealed Classes in Kotlin</li>
+                </ul>
+                <li class="fragment fade-in-then-semi-out">Erzählung des nächsten Teils der Weihnachtsgeschichte</li>
+                <li class="fragment fade-in-then-semi-out">Umsetzung im Code im Mob Programmming</li>
+            </ul>
+        </section>
+        <section data-background-image="data-src/Methodik-1-1-Lesson.svg" data-background-size="contain"></section>
+        <section data-background-image="data-src/Methodik-1-2-Storytelling.svg" data-background-size="contain"></section>
+        <section data-background-image="data-src/Methodik-1-3-MobPRogramming.svg" data-background-size="contain"></section>
+        <section data-background-image="data-src/Methodik-1-4-Iteration.svg" data-background-size="contain"></section>
+        <section>
+            <h1>Die Geschichte</h1>
+            <ul>
+                <li class="fragment fade-in-then-semi-out">…spielt im dem kleinen Dorf Lustighuusen</li>
+                <li class="fragment fade-in-then-semi-out">…mit hundert Einwohnern</li>
+                <li class="fragment fade-in-then-semi-out">…und dem Gruusigen.</li>
+            </ul>
+        </section>
+        <section>
+            <h1>Der Gruusige</h1>
+            <ul>
+                <li class="fragment fade-in-then-semi-out">…wurde als Kind immer geärgert</li>
+                <li class="fragment fade-in-then-semi-out">…und möchte das Fest daher verhindern</li>
+                <li class="fragment fade-in-then-semi-out">…mehr dazu im weiteren Verlauf der Geschichte</li>
+            </ul>
+        </section>
+        <section>
+            <h1>
+                <tag>Lesson</tag>
+                Kotlin > Interfaces
+            </h1>
+            <a class="tiny right" href="https://kotlinlang.org/docs/reference/interfaces.html">https://kotlinlang.org/docs/reference/interfaces.html</a>
+            <pre><code data-trim data-noescape>interface Hund {
+    val fellfarbe: String // nur getter
+    var alter: Int        // getter und setter
+
+    fun `gib Futter`(menge: Int): Unit { // void in Java
+        println("Wuff… wedel…") // system.out.println
+    }
+}</code></pre>
+        </section>
+        <section style="font-size: 0.8em">
+            <h1>
+                <tag>Lesson</tag>
+                <span class="tiny">Klassen > Implementierung von Interfaces</span>
+            </h1>
+            <div class="fragment fade-in-then-semi-out">
+                <a class="tiny right" src="https://kotlinlang.org/docs/reference/classes.html">https://kotlinlang.org/docs/reference/classes.html</a>
+                <pre><code data-trim data-noescape>class Terrier : Hund {
+    override val fellfarbe: String
+        get() = this.fellfarbe
+
+    override var alter: Int
+        get() = this.alter
+        set(value) {
+            this.alter = value
+        }
+
+    override fun `gib Futter`(menge: Int) {
+        println("wuff…")
+    }
+}</code></pre>
+            </div>
+            <div class="fragment fade-in-then-semi-out">
+                <h2>Kurzform</h2>
+                <span class="tiny">mit Deklaration und Zuweisung eines Defaultwertes</span>
+                <pre><code data-trim data-noescape>class Dackel(override val fellfarbe: String, override var alter: Int = 0) : Hund
+            </code></pre>
+            </div>
+        </section>
+        <section style="font-size: 0.8em">
+            <h1>
+                <tag>Lesson</tag>
+                <span class="tiny">Datenklassen</span>
+            </h1>
+            <div class="fragment fade-in-then-semi-out">
+                <a class="tiny right" src="https://kotlinlang.org/docs/reference/data-classes.html">https://kotlinlang.org/docs/reference/data-classes.html</a>
+                <pre><code data-trim data-noescape>data class GoldenRetriever(
+        override val fellfarbe: String,
+        override var alter: Int) : Hund</code></pre>
+            </div>
+            <br/>
+            <div class="fragment fade-in-then-semi-out middle">
+                <h3>Eigenschaften</h3>
+                <ul>
+                    <p>Der Compiler leitet die folgenden Elemente automatisch aus allen im primären Konstruktor deklarierten Properties
+                        ab:</p>
+                    <li>equals()/hashCode()</li>
+                    <li>toString() in der Form "User(fellfarbe=braun, alter=2)"</li>
+                    <li>copy()</li>
+                    <li>…</li>
+                </ul>
+                <p>Seit Version 1.1 können Datenklassen andere Klassen erweitern.</p>
+            </div>
+        </section>
+        <section>
+            <h1>
+                <tag>Lesson</tag>
+                <span class="tiny">Versiegelte Klassen (sealed class)</span>
+            </h1>
+            <div class="fragment fade-in-then-semi-out">
+                <a class="tiny right" src="https://kotlinlang.org/docs/reference/sealed-classes.html">https://kotlinlang.org/docs/reference/sealed-classes.html</a>
+                <p>Versiegelte Klassen werden zur Darstellung eingeschränkter Klassenhierarchien verwendet, wenn ein Wert einen der Typen
+                    aus einer begrenzten Menge haben kann, aber keinen anderen Typ haben darf.</p>
+            </div>
+            <div class="fragment fade-in-then-semi-out">
+                <pre><code data-trim data-noescape>sealed class Haustier(open val alter: Int)
+
+data class Katze(val fellfarbe: String, override val alter: Int) : Haustier(alter)
+data class Kaiman(val gefresseneGnus: Int, override val alter: Int) : Haustier(alter)
+
+fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
+    is Katze -> println("Der Fell der Katze ist $haustier.fellfarbe.")
+    is Kaiman -> print("Der Kaiman hat ${haustier.gefresseneGnus} Gnus gefressen.")
+}</code></pre>
+            </div>
+        </section>
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/father-christmas.jpg"
+                 data-background-size="contain">
+            <h1>
+                <tag>Story</tag>
+                <span class="tiny">Bööööse Geschenke</span>
+            </h1>
+            <div>
+                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
+                    <p>Um den Bürgern den Spass am Fest zu nehmen, plant der Gruusige in einer Fabrik Geschenke zu produzieren, die nicht
+                        richtig funktionieren oder die Einwohner auf andere Art verärgern.</p>
+                </div>
+                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
+                    <ul>
+                        Definiere eine Sealed Class mit folgenden Eigenschaften
+                        <li>name: String</li>
+                        <li>geschlecht: Geschlecht</li>
+                        <li>beschreibung: String</li>
+                        …und schreibe mindestens 4 Klassen mit Defaultwerten die jeweils eine Klasse von Geschenken repräsentieren.
+                    </ul>
+                </div>
+                <br/>
+                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
+                    <ul style="font-size: 0.7em; text-align: left; display: block">
+                        Tips / Anmerkungen
+                        <li>Erstelle für das Geschlecht (WEIBLICH, MAENLICH, SACHLICH) eine Enumeration.</li>
+                        <li>Die Klassen sollen jeweils mit parameterlosem Constructor erzeugt werden können.</li>
+                    </ul>
+                </div>
+                <p class="bildunterschrift">Bild von <a
+                        href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1149928">Free-Photos</a>
+                    auf
+                    <a href="https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1149928">Pixabay</a>
+                </p>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {src: 'plugin/highlight/highlight.js', async: true}
+        ],
+        // Dimensionen überschrieben WXGA
+        width: 1280,
+        height: 720,
+    });
+</script>
+</body>
+</html>
