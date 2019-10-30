@@ -2,9 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bba0fe2-8e41-4f5b-8f9a-dfb52e1520c5" name="Default Changelist" comment="Package name changed.">
-      <change afterPath="$PROJECT_DIR$/../fizzbuzz/src/main/kotlin/KotlinWS.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../fizzbuzz/src/main/kotlin/Whoville.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fizzbuzz/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../fizzbuzz/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/weihnachtsgeschichte.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/fizzbuzz/kotlinws/Dackel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/fizzbuzz/kotlinws/GoldenRetriever.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/fizzbuzz/kotlinws/HatBeine.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/fizzbuzz/kotlinws/Haustier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/fizzbuzz/kotlinws/Hund$DefaultImpls.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/fizzbuzz/kotlinws/Hund.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/fizzbuzz/kotlinws/Kaiman.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/fizzbuzz/kotlinws/Katze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/fizzbuzz/kotlinws/KotlinWSKt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/fizzbuzz/kotlinws/Terrier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/WeihnachtsgeschichteKt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Bonbon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Einwohner.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Fabrik$$special$$inlined$observable$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Fabrik$geschenkeMaschine$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Fabrik$geschenkeMaschine$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Fabrik$geschenkeMaschine$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Fabrik$geschenkeMaschine$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Fabrik$produziereGeschenk$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Fabrik$produzierteGeschenkeRxObservable$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Fabrik.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Fahrrad.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Fall.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Geschenk.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Geschlecht$MÄNNLICH$WhenMappings.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Geschlecht$MÄNNLICH.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Geschlecht$SACHLICH$WhenMappings.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Geschlecht$SACHLICH.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Geschlecht$WEIBLICH$WhenMappings.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Geschlecht$WEIBLICH.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Geschlecht.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Grinch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Katze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Kuscheltier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/Lustighausen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/MitBeschreibung.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/WhovilleKt$WhenMappings.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/WhovilleKt$main$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/WhovilleKt$main$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/WhovilleKt$main$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/app/codedojo/kata/weihnachtsgeschichte/vorlage/WhovilleKt.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/weihnachtsgeschichte.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/app/codedojo/codedojo/kata/weihnachtsgeschichte/WeihnachtsgeschichteTest.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -179,6 +223,10 @@
       <workItem from="1572333991667" duration="251000" />
       <workItem from="1572335570704" duration="743000" />
       <workItem from="1572336327788" duration="668000" />
+      <workItem from="1572345239007" duration="1534000" />
+      <workItem from="1572438036195" duration="51000" />
+      <workItem from="1572438111789" duration="17000" />
+      <workItem from="1572438141128" duration="575000" />
     </task>
     <task id="LOCAL-00001" summary="Test cases improved by using parameterized tests.">
       <created>1567117683143</created>
