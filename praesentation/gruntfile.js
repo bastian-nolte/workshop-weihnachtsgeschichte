@@ -105,6 +105,7 @@ module.exports = grunt => {
 				options: {
 					port: port,
 					base: root,
+					hostname: '0.0.0.0',
 					livereload: true,
 					open: true,
 					useAvailablePort: true
