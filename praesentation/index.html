@@ -76,7 +76,7 @@
         }
 
         .reveal p.bildunterschrift {
-            font-size: 0.4em;
+            font-size: 0.3em;
         }
 
         tag {
@@ -104,6 +104,8 @@
 <body>
 <div class="reveal">
     <div class="slides">
+
+
         <section>
             <h1>Kotlin und ReactiveX</h1>
             <img data-src="data-src/Rx_Logo_S.png" style="border: 0; background-color: #191919; margin-right: 2em"/>
@@ -126,42 +128,17 @@
                         href="https://pixabay.com/de/users/Larisa-K-1107275/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2928142">Larisa
                     Koshkina</a> auf <a
                         href="https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2928142">Pixabay</a>
+                    <br/>
+                    Rentier-Icon von <a
+                            href="https://www.cleanpng.com/png-christmas-icon-deer-icon-santa-icon-7389369/download-png.html">www.cleanpng.com</a>
                 </p>
-                <p class="bildunterschrift">Rentier-Icon von <a
-                        href="https://www.cleanpng.com/png-christmas-icon-deer-icon-santa-icon-7389369/download-png.html">www.cleanpng.com</a>
             </div>
         </section>
-        <section>
-            <h1>Methodik</h1>
-            <ul>
-                <li class="fragment fade-in-then-semi-out">Einführung in Technologiefragment</li>
-                <ul class="fragment fade-in-then-semi-out">
-                    <li>z.B. Interfaces, Classes, Sealed Classes in Kotlin</li>
-                </ul>
-                <li class="fragment fade-in-then-semi-out">Erzählung des nächsten Teils der Weihnachtsgeschichte</li>
-                <li class="fragment fade-in-then-semi-out">Umsetzung im Code im Mob Programmming</li>
-            </ul>
-        </section>
+
         <section data-background-image="data-src/Methodik-1-1-Lesson.svg" data-background-size="contain"></section>
         <section data-background-image="data-src/Methodik-1-2-Storytelling.svg" data-background-size="contain"></section>
         <section data-background-image="data-src/Methodik-1-3-MobPRogramming.svg" data-background-size="contain"></section>
         <section data-background-image="data-src/Methodik-1-4-Iteration.svg" data-background-size="contain"></section>
-        <section>
-            <h1>Die Geschichte</h1>
-            <ul>
-                <li class="fragment fade-in-then-semi-out">…spielt im dem kleinen Dorf Lustighuusen</li>
-                <li class="fragment fade-in-then-semi-out">…mit hundert Einwohnern</li>
-                <li class="fragment fade-in-then-semi-out">…und dem Gruusigen.</li>
-            </ul>
-        </section>
-        <section>
-            <h1>Der Gruusige</h1>
-            <ul>
-                <li class="fragment fade-in-then-semi-out">…wurde als Kind immer geärgert</li>
-                <li class="fragment fade-in-then-semi-out">…und möchte das Fest daher verhindern</li>
-                <li class="fragment fade-in-then-semi-out">…mehr dazu im weiteren Verlauf der Geschichte</li>
-            </ul>
-        </section>
         <section>
             <h1>
                 <tag>Lesson</tag>
@@ -180,32 +157,63 @@
         <section style="font-size: 0.8em">
             <h1>
                 <tag>Lesson</tag>
+                <span class="tiny">Klassen</span>
+            </h1>
+            <div class="fragment fade-in-then-semi-out">
+                <a class="tiny right" src="https://kotlinlang.org/docs/reference/classes.html">https://kotlinlang.org/docs/reference/classes.html</a>
+                <pre><code data-trim data-noescape>class Kino(val sitzplaetze: Int)</code></pre>
+            </div>
+            <div class="fragment fade-in-then-semi-out">
+                <span class="tiny">mit Deklaration und Zuweisung eines Defaultwertes</span>
+                <pre><code data-trim data-noescape>class Pkw(val maxPersonen: Int = 5)</code></pre>
+            </div>
+            <div class="fragment fade-in-then-semi-out">
+                <span class="tiny">mit privaten Members und einer Methode</span>
+                <pre><code data-trim data-noescape>class Fahrstuhl(val maxPersonen: Int, val maxGewicht: Int) {
+    private var personen: Int = 0
+    private var gesamtGewicht: Int = 0
+
+    fun addPerson(gewicht: Int) {
+      if (gesamtGewicht + gewicht > maxGewicht)
+        throw IllegalArgumentException("Zulässiges Gesamtgewicht von $maxGewicht ist überschritten.")
+      personen++
+      gesamtGewicht += gewicht;
+    }
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <section style="font-size: 0.8em">
+            <h1>
+                <tag>Lesson</tag>
                 <span class="tiny">Klassen > Implementierung von Interfaces</span>
             </h1>
             <div class="fragment fade-in-then-semi-out">
                 <a class="tiny right" src="https://kotlinlang.org/docs/reference/classes.html">https://kotlinlang.org/docs/reference/classes.html</a>
-                <pre><code data-trim data-noescape>class Terrier : Hund {
-    override val fellfarbe: String
-        get() = this.fellfarbe
-
-    override var alter: Int
-        get() = this.alter
-        set(value) {
-            this.alter = value
-        }
-
-    override fun `gib Futter`(menge: Int) {
-        println("wuff…")
-    }
-}</code></pre>
+                <pre><code data-trim data-noescape>class Dackel(…) : Hund</code></pre>
             </div>
             <div class="fragment fade-in-then-semi-out">
-                <h2>Kurzform</h2>
-                <span class="tiny">mit Deklaration und Zuweisung eines Defaultwertes</span>
-                <pre><code data-trim data-noescape>class Dackel(override val fellfarbe: String, override var alter: Int = 0) : Hund
+                <pre><code data-trim data-noescape>class Dackel(override val fellfarbe: String, val ruteGehoben: Boolean): Hund
+                </code></pre>
+            </div>
+            <div class="fragment fade-in-then-semi-out">
+                <pre><code data-trim data-noescape>class Dackel(
+    override val fellfarbe: String,
+    override var alter: Int = 0) : Hund {
+
+        override fun `gib Futter`(menge: Int) {
+            println("wuff…")
+        }
+
+        fun `jage Dachs`() {
+            //…
+        }
+}
             </code></pre>
             </div>
         </section>
+
         <section style="font-size: 0.8em">
             <h1>
                 <tag>Lesson</tag>
@@ -244,14 +252,32 @@
             <div class="fragment fade-in-then-semi-out">
                 <pre><code data-trim data-noescape>sealed class Haustier(open val alter: Int)
 
-data class Katze(val fellfarbe: String, override val alter: Int) : Haustier(alter)
-data class Kaiman(val gefresseneGnus: Int, override val alter: Int) : Haustier(alter)
+class Katze(val fellfarbe: String, override val alter: Int) : Haustier(alter)
+class Kaiman(val gefresseneGnus: Int, override val alter: Int) : Haustier(alter)
 
 fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
     is Katze -> println("Der Fell der Katze ist $haustier.fellfarbe.")
     is Kaiman -> print("Der Kaiman hat ${haustier.gefresseneGnus} Gnus gefressen.")
 }</code></pre>
             </div>
+        </section>
+        <section>
+            <h1>Die Geschichte</h1>
+            <div style="background-image: url('data-src/68965-winter-deer.svg'); background-repeat: no-repeat"/>
+            <ul>
+                <li class="fragment fade-in-then-semi-out">…spielt im dem kleinen Dorf Lustighuusen</li>
+                <li class="fragment fade-in-then-semi-out">…mit tausend Einwohnern</li>
+                <li class="fragment fade-in-then-semi-out">…und dem Gruusigen.</li>
+            </ul>
+        </section>
+        <section>
+            <img src="data-src/grinchface.svg" style="margin-top: -2.5em; height: 7em; border: none; background: none"/>
+            <h1>Der Gruusige</h1>
+            <ul>
+                <li class="fragment fade-in-then-semi-out">…wurde als Kind immer geärgert</li>
+                <li class="fragment fade-in-then-semi-out">…und möchte das Fest daher verhindern</li>
+                <li class="fragment fade-in-then-semi-out">…mehr dazu im weiteren Verlauf der Geschichte</li>
+            </ul>
         </section>
         <section style="font-size: 0.75em"
                  data-background-image="data-src/father-christmas.jpg"
