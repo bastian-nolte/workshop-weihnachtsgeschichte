@@ -1,4 +1,4 @@
-@file:Suppress("NonAsciiCharacters", "FunctionName", "unused")
+@file:Suppress("NonAsciiCharacters", "FunctionName", "unused", "DuplicatedCode")
 
 package app.codedojo.kata.weihnachtsgeschichte.loesungsvariante
 
@@ -8,18 +8,19 @@ import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Geschlecht
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.`drucke in Farbe`
 import io.reactivex.Emitter
 import io.reactivex.Observable
+import java.io.File
 import java.util.concurrent.CompletableFuture
 import kotlin.properties.Delegates
 import kotlin.random.Random
 
 
 fun main() {
-    val lustighausen = Lustighausen()
+    val lustighausen = Lustighuusen(`einwohner aus Datei lesen`(), Gruusige())
     var produktionAbgeschlossen = false
 
     lustighausen.fabrik.produzierteGeschenkeRxObservable
             .subscribe(
-                    { neuesGeschenk -> lustighausen.grinch.`liefere Geschenk an Einwohner`(neuesGeschenk, lustighausen.`ein zufälliger Einwohner`()) },
+                    { neuesGeschenk -> lustighausen.gruusige.`liefere Geschenk an Einwohner`(neuesGeschenk, lustighausen.`ein zufälliger Einwohner`()) },
                     {},
                     { produktionAbgeschlossen = true }
             )
@@ -32,24 +33,27 @@ fun main() {
     }
 }
 
-class Lustighausen {
-    val fabrik = Fabrik()
-    val grinch = Grinch()
-    private val einwohner = setOf(Einwohner("Heribert"), Einwohner("Giselinde"), Einwohner("Annabelle"))
-
-    fun `ein zufälliger Einwohner`() = einwohner.random()
-}
-
-class Grinch {
-    fun `liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner: Einwohner) {
-        `drucke in Farbe`(Farbe.GRUEN, "Der Grinch liefert ${geschenk.geschlecht.unbestimmterArtikel(Fall.AKKUSATIV)} ${geschenk.beschreibung} an ${einwohner.name}. 🥶")
-        einwohner.`nehme Geschenk an`(geschenk)
+fun `einwohner aus Datei lesen`(): Set<Einwohner> {
+    return File("src/main/resources/vornamen.txt").useLines {
+        it.map { name -> Einwohner(name) }.toSet()
     }
 }
 
+
+class Lustighuusen(val einwohner: Set<Einwohner>, val gruusige: Gruusige) {
+    var guteLauneIndex: Int = 100
+        private set
+
+    val fabrik = Fabrik()
+    fun `ein zufälliger Einwohner`() = einwohner.random()
+}
+
 class Einwohner(val name: String) {
+    var guteLauneIndex: Int = 100
+        private set
+
     fun `nehme Geschenk an`(geschenk: Geschenk) {
-        `drucke in Farbe`(Farbe.GELB, "${this.name} nimmt das ${geschenk.name} entgegen. 🥰")
+        `drucke in Farbe`(Farbe.GELB, "${this.name} nimmt ${geschenk.name} entgegen. 🥰")
         `spiele mit Geschenk`(geschenk)
     }
 
@@ -57,11 +61,19 @@ class Einwohner(val name: String) {
         when (geschenk) {
             is Fahrrad -> `drucke in Farbe`(Farbe.ROT, "$name fährt schreiend gegen Auto vom Nachbarn. 😡")
             is Bonbon -> `drucke in Farbe`(Farbe.ROT, "$name schnieft wegen der Schärfe. 🤧")
-            is Kuscheltier -> `drucke in Farbe`(Farbe.ROT, "$name krazt sich die Haut auf. 🤬")
-            is Katze -> `drucke in Farbe`(Farbe.ROT, "$name wird vom Arzt genäht. ")
+            is Kuscheltier -> `drucke in Farbe`(Farbe.ROT, "$name kratzt sich die Haut auf. 🤬")
+            is Katze -> `drucke in Farbe`(Farbe.ROT, "$name wird vom Arzt genäht. ☠️")
         }
     }
 }
+
+class Gruusige {
+    fun `liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner: Einwohner) {
+        `drucke in Farbe`(Farbe.GRUEN, "Der Grinch liefert ${geschenk.geschlecht.unbestimmterArtikel(Fall.AKKUSATIV)} ${geschenk.beschreibung} an ${einwohner.name}. 🥶")
+        einwohner.`nehme Geschenk an`(geschenk)
+    }
+}
+
 
 class Fabrik {
     /**
@@ -113,16 +125,11 @@ class Fabrik {
     private fun `informiere darüber, dass die Produktion nun abgeschlossen ist`() = emitter.onComplete()
 }
 
-interface MitBeschreibung {
-    val name: String
-    val beschreibung: String
-}
-
 sealed class Geschenk(
-        override val name: String,
+        val name: String,
         val geschlecht: Geschlecht,
-        override val beschreibung: String,
-        val stimmungspunkte: Int) : MitBeschreibung
+        val beschreibung: String,
+        val stimmungspunkte: Int)
 
 class Fahrrad : Geschenk(
         name = "Fahrrad",

@@ -6,22 +6,22 @@ import java.io.File
 
 fun main() {
     val gruusige = Gruusige()
-    val lustighuusen = Lustighuusen(`einwohner aus Datei lesen`(), gruusige)
+    // Neues >>
+    val einwohner = `einwohner aus Datei lesen`()
+    `einwohner ausgeben`(einwohner)
+    val lustighuusen = Lustighuusen(einwohner, gruusige)
 }
 
-// Neues >>
 fun `einwohner aus Datei lesen`(): Set<Einwohner> {
-    // Einlesen
-    val einwohner = File("src/main/resources/vornamen.txt").useLines {
+    return File("src/main/resources/vornamen.txt").useLines {
         it.map { name -> Einwohner(name) }.toSet()
     }
+}
 
-    // Ausgeben
+fun `einwohner ausgeben`(einwohner: Set<Einwohner>) {
     for ((index, einwohner) in einwohner.withIndex()) {
         println("Einwohner ${index + 1}: ${einwohner.name}")
     }
-
-    return einwohner
 }
 // << oeNeues
 

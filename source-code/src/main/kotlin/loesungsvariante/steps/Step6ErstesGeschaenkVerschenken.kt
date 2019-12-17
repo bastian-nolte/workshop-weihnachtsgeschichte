@@ -1,13 +1,19 @@
-@file:Suppress("unused", "PackageDirectoryMismatch", "UNUSED_VARIABLE", "FunctionName")
+@file:Suppress("unused", "PackageDirectoryMismatch", "UNUSED_VARIABLE", "FunctionName", "DuplicatedCode")
 
-package app.codedojo.kata.weihnachtsgeschichte.vorlagen.s5
+package app.codedojo.kata.weihnachtsgeschichte.vorlagen.s6
 
+import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Farbe
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Geschlecht
+import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.`drucke in Farbe`
 import java.io.File
 
 fun main() {
     val gruusige = Gruusige()
     val lustighuusen = Lustighuusen(`einwohner aus Datei lesen`(), gruusige)
+
+    // Neues 2 >>
+    lustighuusen.einwohner.random().`nehme Geschenk an`(Kuscheltier())
+    // oeNeues
 }
 
 fun `einwohner aus Datei lesen`(): Set<Einwohner> {
@@ -24,11 +30,26 @@ class Lustighuusen(val einwohner: Set<Einwohner>, val gruusige: Gruusige) {
 class Einwohner(val name: String) {
     var guteLauneIndex: Int = 100
         private set
+
+    // Neues 1 >>
+    fun `nehme Geschenk an`(geschenk: Geschenk) {
+        `drucke in Farbe`(Farbe.GELB, "${this.name} nimmt ${geschenk.name} entgegen. 🥰")
+        `spiele mit Geschenk`(geschenk)
+    }
+
+    private fun `spiele mit Geschenk`(geschenk: Geschenk) {
+        when (geschenk) {
+            is Fahrrad -> `drucke in Farbe`(Farbe.ROT, "$name fährt schreiend gegen Auto vom Nachbarn. 😡")
+            is Bonbon -> `drucke in Farbe`(Farbe.ROT, "$name schnieft wegen der Schärfe. 🤧")
+            is Kuscheltier -> `drucke in Farbe`(Farbe.ROT, "$name kratzt sich die Haut auf. 🤬")
+            is Katze -> `drucke in Farbe`(Farbe.ROT, "$name wird vom Arzt genäht. ☠️")
+        }
+    }
+    // << eoNeues
 }
 
 class Gruusige
 
-// Neues >>
 sealed class Geschenk(
         val name: String,
         val geschlecht: Geschlecht,
@@ -58,4 +79,3 @@ class Katze : Geschenk(
         geschlecht = Geschlecht.WEIBLICH,
         beschreibung = "sehr bissige Katze",
         stimmungspunkte = 45)
-// oeNeues

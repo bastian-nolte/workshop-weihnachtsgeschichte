@@ -142,8 +142,43 @@
 <div class="reveal">
     <div class="slides">
 
+        <section>
+            <img src="data-src/grinchface.svg" style="margin-top: -2.5em; height: 7em; border: none; background: none"/>
+            <h1 style="font-size: 0.8em">Wie brauchen meeehr Geschenke. Die Fabrik!</h1>
+            <div class="fragment zoom-in">
+                <p>Um die Stimmung im Dorf zu senken, hat der Gruusige eine perfiden Plan ausgearbeitet!</p>
+                <p>Er möchte Geschenke produzieren, die die Beschenkten verärgern und so die Stimmung im Dorf drücken.</p>
+            </div>
+            <div class="fragment zoom-in">
+                🎁&nbsp;👊🏻
+            </div>
+        </section>
 
-
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
+                 data-background-size="contain">
+            <h1>
+                <tag>Anforderung</tag>
+                <span class="tiny">Uiuiui… ich habe ein Geschenk erhalten! 😍🎁🥰</span>
+            </h1>
+            <div>
+                <div class="detailBlock fragment fade-in-then-semi-out">
+                    <p>Erstelle in der Klasse Einwohner eine neue Function «`nehme Geschenk an`(geschenk: Geschenk)»</p>
+                    <p>Nutze die Function «drucke in Farbe» um einen Text in gelber Farbe in etwa wie folgt auszugeben…</p>
+                    <p><code style="padding-left: 3em">Ronaldo nimmt Kuscheltier entgegen 🥰.</code></p>
+                </div>
+                <div class="detailBlock fragment fade-in-then-semi-out">
+                    <p>Erstelle in der «main»-Function ein Geschenk und übergebe es einer zufällig gewählten Person.</p>
+                    <p>Starte die Anwendung und schaue die Ausgabe an.</p>
+                </div>
+                <div class="detailBlock fragment fade-in-then-semi-out">
+                    <p>Erstelle in der Klasse Einwohner eine neue private Function «`spiele mit Geschenk`(geschenk: Geschenk)»</p>
+                    <p>Nutze «<code>when() {…is…</code>» um die unterschiedlichen Fälle abzuhandeln und einen passenden Text in roter Farbe auszugeben…</p>
+                    <p><code style="padding-left: 3em">Ronaldo kratzt sich die Haut auf 🤬.</code></p>
+                    <p>Rufe diese neue Function ab Ende der Function «nehme Geschenk an» auf.</p>
+                </div>
+            </div>
+        </section>
 
         <section>
             <h1>Kotlin und ReactiveX</h1>
@@ -434,6 +469,32 @@ interface Eierleger {
                             Dir die Konsequenzen bewusst.
                         </li>
                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
+                 data-background-size="contain">
+            <h1>
+                <tag style="font-size: 0.8em">Anforderungen</tag>
+                <span class="subtitle">Lese alle Namen aus der Datei «vornamen.txt»…</span>
+            </h1>
+            <div>
+                <div class="" style="background-color: rgba(50,50,50,0.7); border-radius: 0.3em; margin: 0 1em; padding: 0.1em 0.5em">
+                    <ul>
+                        <li class="">Erstelle eine Function «`einwohner aus Datei lesen`(): Set&lt;Einwohner&gt;».
+                        </li>
+                        <li class="">Nutze «File("src/main/resources/vornamen.txt").useLines» um die Datei einzulesen. «map» und «toSet» helfen beim Umformen.
+                        </li>
+                    </ul>
+                    <ul class="fragment fade-in">
+                        <li class="">Erstelle eine Function «`einwohner ausgeben`(einwohner: Set&lt;Einwohner&gt;)».
+                        </li>
+                        <li>Nutze «einwohner.withIndex» in Verbindung mit «for» um die Namen aller Einwohner und dessen Index auszugeben.</li>
+                    </ul>
+                    <p>&nbsp;</p>
+                    <hr/>
                     <div class="fragment zoom-in">Sehr gut 😃… und weiter geht's 🥳.</div>
                 </div>
             </div>
@@ -515,6 +576,33 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
                             </ul>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
+                 data-background-size="contain">
+            <h1>
+                <tag>Anforderung</tag>
+                <span class="tiny">Uiuiui… ich habe ein Geschenk erhalten! 😍🎁🥰</span>
+            </h1>
+            <div>
+                <div class="detailBlock fragment fade-in-then-semi-out">
+                    <p>Erstelle in der Klasse Einwohner eine neue Function «`nehme Geschenk an`(geschenk: Geschenk)»</p>
+                    <p>Nutze die Function «drucke in Farbe» um einen Text in gelber Farbe in etwa wie folgt auszugeben…</p>
+                    <p><code style="padding-left: 3em">Ronaldo nimmt Kuscheltier entgegen 🥰.</code></p>
+                </div>
+                <div class="detailBlock fragment fade-in-then-semi-out">
+                    <p>Erstelle in der «main»-Function ein Geschenk und übergebe es einer zufällig gewählten Person.</p>
+                    <p>Starte die Anwendung und schaue die Ausgabe an.</p>
+                </div>
+                <div class="detailBlock fragment fade-in-then-semi-out">
+                    <p>Erstelle in der Klasse Einwohner eine neue private Function «`spiele mit Geschenk`(geschenk: Geschenk)»</p>
+                    <p>Nutze «<code>when() {…is…</code>» um die unterschiedlichen Fälle abzuhandeln und einen passenden Text in roter Farbe auszugeben…</p>
+                    <p><code style="padding-left: 3em">Ronaldo kratzt sich die Haut auf 🤬.</code></p>
+                    <p>Rufe diese neue Function am Ende der Function «nehme Geschenk an» auf.</p>
+                    <p>Starte die Anwendung und schaue die erweiterte Ausgabe an.</p>
                 </div>
             </div>
         </section>
