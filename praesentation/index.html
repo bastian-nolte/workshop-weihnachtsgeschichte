@@ -99,12 +99,105 @@
             text-align: right;
             display: block;
         }
+
+        /* Eine Klasse (uml) */
+        .klasse {
+            background: #7fb0c4;
+            border-radius: 0.2em;
+            display: inline-block;
+            font-size: 0.7em;
+            text-align: left;
+            padding: 0.2em 0.4em;
+        }
+        .klasse h1 {
+            font-size: 1.2em;
+            text-transform: none;
+            border-bottom: solid 1px white;
+            margin-bottom: 0;
+        }
+        .klasse li:before {
+            display: none;
+        }
     </style>
 </head>
 <body>
 <div class="reveal">
     <div class="slides">
 
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
+                 data-background-size="contain">
+            <h1>
+                <tag style="font-size: 0.8em">Anforderungen</tag>
+                <span class="tiny">Dorf, Einwohner und Gruusige</span>
+            </h1>
+            <div>
+                <div class="" style="background-color: rgba(50,50,50,0.7); border-radius: 0.3em; margin: 0 1em; padding: 0.1em 0.5em">
+                    <p>Erstelle eine Klasse «Einwohner» mit den folgenden Eigenschaften:</p>
+                    <div class="klasse">
+                        <h1>Einwohner</h1>
+                        <ul>
+                            <li>name: String</li>
+                            <li>guteLauneIndex: Int = 100</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="" style="background-color: rgba(50,50,50,0.7); border-radius: 0.3em; margin: 0 1em; padding: 0.1em 0.5em">
+                    <p>Erstelle eine Klasse «Gruusige» mit den folgenden Eigenschaften:</p>
+                    <div class="klasse">
+                        <h1>Gruusige</h1>
+                    </div>
+                </div>
+                <div class="" style="background-color: rgba(50,50,50,0.7); border-radius: 0.3em; margin: 0 1em; padding: 0.1em 0.5em">
+                    <p>Erstelle eine Klasse «Lustighuusen» mit den folgenden Eigenschaften:</p>
+                    <div class="klasse">
+                        <h1>Lustighuusen</h1>
+                        <ul>
+                            <li>einwohner: Set&lt;Einwohner&gt; = Set()</li>
+                            <li>gruusige: Gruusige;</li>
+                            <li>guteLauneIndex: Int = 100</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
+                 data-background-size="contain">
+            <h1>
+                <tag>Story</tag>
+                <span class="tiny">Bööööse Geschenke</span>
+            </h1>
+            <div>
+                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
+                    <p>Um den Bürgern den Spass am Fest zu nehmen, plant der Gruusige in einer Fabrik Geschenke zu produzieren, die nicht
+                        richtig funktionieren oder die Einwohner auf andere Art verärgern.</p>
+                </div>
+                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
+                    <ul>
+                        Definiere eine Sealed Class mit folgenden Eigenschaften
+                        <li>name: String</li>
+                        <li>geschlecht: Geschlecht</li>
+                        <li>beschreibung: String</li>
+                        …und schreibe mindestens 4 Klassen mit Defaultwerten die jeweils eine Klasse von Geschenken repräsentieren.
+                    </ul>
+                </div>
+                <br/>
+                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
+                    <ul style="font-size: 0.7em; text-align: left; display: block">
+                        Tips / Anmerkungen
+                        <li>Erstelle für das Geschlecht (WEIBLICH, MAENLICH, SACHLICH) eine Enumeration.</li>
+                        <li>Die Klassen sollen jeweils mit parameterlosem Constructor erzeugt werden können.</li>
+                    </ul>
+                </div>
+                <p class="bildunterschrift">Bild von <a
+                        href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1149928">Free-Photos</a>
+                    auf
+                    <a href="https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1149928">Pixabay</a>
+                </p>
+            </div>
+        </section>
 
         <section>
             <h1>Kotlin und ReactiveX</h1>
@@ -136,24 +229,13 @@
         </section>
 
         <section data-background-image="data-src/Methodik-1-1-Lesson.svg" data-background-size="contain"></section>
-        <section data-background-image="data-src/Methodik-1-2-Storytelling.svg" data-background-size="contain"></section>
-        <section data-background-image="data-src/Methodik-1-3-MobPRogramming.svg" data-background-size="contain"></section>
-        <section data-background-image="data-src/Methodik-1-4-Iteration.svg" data-background-size="contain"></section>
-        <section>
-            <h1>
-                <tag>Lesson</tag>
-                Kotlin > Interfaces
-            </h1>
-            <a class="tiny right" href="https://kotlinlang.org/docs/reference/interfaces.html">https://kotlinlang.org/docs/reference/interfaces.html</a>
-            <pre><code data-trim data-noescape>interface Hund {
-    val fellfarbe: String // nur getter
-    var alter: Int        // getter und setter
 
-    fun `gib Futter`(menge: Int): Unit { // void in Java
-        println("Wuff… wedel…") // system.out.println
-    }
-}</code></pre>
-        </section>
+        <section data-background-image="data-src/Methodik-1-2-Storytelling.svg" data-background-size="contain"></section>
+
+        <section data-background-image="data-src/Methodik-1-3-MobPRogramming.svg" data-background-size="contain"></section>
+
+        <section data-background-image="data-src/Methodik-1-4-Iteration.svg" data-background-size="contain"></section>
+
         <section style="font-size: 0.8em">
             <h1>
                 <tag>Lesson</tag>
@@ -173,7 +255,7 @@
     private var personen: Int = 0
     private var gesamtGewicht: Int = 0
 
-    fun addPerson(gewicht: Int) {
+    fun `person steigt ein`(gewicht: Int) {
       if (gesamtGewicht + gewicht > maxGewicht)
         throw IllegalArgumentException("Zulässiges Gesamtgewicht von $maxGewicht ist überschritten.")
       personen++
@@ -182,6 +264,57 @@
 }
                 </code></pre>
             </div>
+        </section>
+
+        <section
+                style="height: 100%; background-image: url('data-src/code_verschwommen_shutterstock_1432879004.jpg'); background-repeat: no-repeat; background-size: cover; font-size: 0.8em">
+            <h1>
+                <tag>Live Coding</tag>
+                <span class="tiny">Null Safety</span>
+            </h1>
+            <div class="fragment fade-in-then-semi-out">
+                <pre><code data-trim data-noescape>class Fahrstuhl(val maxPersonen: Int, val maxGewicht: Int) {
+    private var personen: Int = 0
+    private var gesamtGewicht: Int = 0
+
+    fun `person steigt ein`(gewicht: Int) {
+      if (gesamtGewicht + gewicht > maxGewicht)
+        throw IllegalArgumentException("Zulässiges Gesamtgewicht von $maxGewicht ist überschritten.")
+      personen++
+      gesamtGewicht += gewicht;
+    }
+}
+                </code></pre>
+            </div>
+            <div class="fragment" style="background-color: rgba(50,50,50,0.6); border-radius: 0.3em;">
+                <h2 style="margin: 0">Erweitern um…</h2>
+                <ul style="font-size: 0.8em;">
+                    <li>Eine Instanz erzeugen. Init-Block mit println()-Ausgabe</li>
+                    <li>Umstellen auf Default-Values.</li>
+                    <li>Properties hinzufügen (anzahlFenster & typenbezeichnung), die Null sein dürfen (?)</li>
+                    <li>Behandlung mit «safe call operator» <code style="background: #2a76dd">?.</code>.</li>
+                    <li>Behandlung mit «Elvis Operator» <code style="background: #2a76dd">?:</code>.</li>
+                    <li>Für NPE-Fans: Der «<code style="background: #2a76dd">!!</code> Operator» 😈 (don't do this!)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h1>
+                <tag>Lesson</tag>
+                Kotlin > Interfaces
+            </h1>
+            <a class="tiny right" href="https://kotlinlang.org/docs/reference/interfaces.html">https://kotlinlang.org/docs/reference/interfaces.html</a>
+            <pre><code data-trim data-noescape>interface Hund {
+    val fellfarbe: String
+    var alter: Int
+
+    fun `begruesse Gast`(): Unit // void in Java
+
+    fun `iss Futter`(menge: Int): Unit { // Mit Standard-Implementierung
+        println("Wuff… wedel…") // system.out.println
+    }
+}</code></pre>
         </section>
 
         <section style="font-size: 0.8em">
@@ -194,23 +327,45 @@
                 <pre><code data-trim data-noescape>class Dackel(…) : Hund</code></pre>
             </div>
             <div class="fragment fade-in-then-semi-out">
-                <pre><code data-trim data-noescape>class Dackel(override val fellfarbe: String, val ruteGehoben: Boolean): Hund
-                </code></pre>
-            </div>
-            <div class="fragment fade-in-then-semi-out">
                 <pre><code data-trim data-noescape>class Dackel(
-    override val fellfarbe: String,
-    override var alter: Int = 0) : Hund {
+        override val fellfarbe: String,
+        override var alter: Int = 0) : Hund {
 
-        override fun `gib Futter`(menge: Int) {
-            println("wuff…")
-        }
+    override fun `begruesse Gast`() {
+        println("Wedel mit Rute. Springe Person an.")
+    }
 
-        fun `jage Dachs`() {
-            //…
-        }
+    fun `jage Dachs`() {
+        //…
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <section style="font-size: 0.8em">
+            <h1>
+                <tag>LESSON</tag>
+                <span class="tiny">Vererbung & Konfliktlösung</span>
+            </h1>
+            <div class="fragment fade-in-then-semi-out">
+                <pre><code data-trim data-noescape>class Kloakentiere: Saeugetier, Eierleger {
+    override fun `planze fort`() {
+        super&lt;Eierleger&gt;.`planze fort`()
+    }
+
 }
-            </code></pre>
+
+interface Saeugetier {
+    fun `planze fort`() {
+        println("Leite Geburt ein.")
+    }
+}
+
+interface Eierleger {
+    fun `planze fort`() {
+        println("Leege Ei.")
+    }
+}</code></pre>
             </div>
         </section>
 
@@ -252,15 +407,20 @@
             <div class="fragment fade-in-then-semi-out">
                 <pre><code data-trim data-noescape>sealed class Haustier(open val alter: Int)
 
-class Katze(val fellfarbe: String, override val alter: Int) : Haustier(alter)
-class Kaiman(val gefresseneGnus: Int, override val alter: Int) : Haustier(alter)
+class Katze(val fellfarbe: String, alter: Int) : Haustier(alter)
+class Kaiman(val gefresseneGnus: Int, alter: Int) : Haustier(alter)
 
 fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
     is Katze -> println("Der Fell der Katze ist $haustier.fellfarbe.")
     is Kaiman -> print("Der Kaiman hat ${haustier.gefresseneGnus} Gnus gefressen.")
 }</code></pre>
+            <h1 style="font-size: 0.8em">
+                <tag>Live Coding</tag>
+                <span class="tiny">Neue Klasse Dackel</span>
+            </h1>
             </div>
         </section>
+
         <section>
             <h1>Die Geschichte</h1>
             <div style="background-image: url('data-src/68965-winter-deer.svg'); background-repeat: no-repeat"/>
@@ -279,42 +439,10 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
                 <li class="fragment fade-in-then-semi-out">…mehr dazu im weiteren Verlauf der Geschichte</li>
             </ul>
         </section>
-        <section style="font-size: 0.75em"
-                 data-background-image="data-src/father-christmas.jpg"
-                 data-background-size="contain">
-            <h1>
-                <tag>Story</tag>
-                <span class="tiny">Bööööse Geschenke</span>
-            </h1>
-            <div>
-                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
-                    <p>Um den Bürgern den Spass am Fest zu nehmen, plant der Gruusige in einer Fabrik Geschenke zu produzieren, die nicht
-                        richtig funktionieren oder die Einwohner auf andere Art verärgern.</p>
-                </div>
-                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
-                    <ul>
-                        Definiere eine Sealed Class mit folgenden Eigenschaften
-                        <li>name: String</li>
-                        <li>geschlecht: Geschlecht</li>
-                        <li>beschreibung: String</li>
-                        …und schreibe mindestens 4 Klassen mit Defaultwerten die jeweils eine Klasse von Geschenken repräsentieren.
-                    </ul>
-                </div>
-                <br/>
-                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
-                    <ul style="font-size: 0.7em; text-align: left; display: block">
-                        Tips / Anmerkungen
-                        <li>Erstelle für das Geschlecht (WEIBLICH, MAENLICH, SACHLICH) eine Enumeration.</li>
-                        <li>Die Klassen sollen jeweils mit parameterlosem Constructor erzeugt werden können.</li>
-                    </ul>
-                </div>
-                <p class="bildunterschrift">Bild von <a
-                        href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1149928">Free-Photos</a>
-                    auf
-                    <a href="https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1149928">Pixabay</a>
-                </p>
-            </div>
-        </section>
+
+        <!-- XXX -->
+
+
     </div>
 </div>
 
