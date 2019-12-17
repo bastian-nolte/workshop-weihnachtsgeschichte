@@ -1,4 +1,4 @@
-package app.codedojo.kata.weihnachtsgeschichte.beispiele
+package app.codedojo.kata.weihnachtsgeschichte.livecodings
 
 fun main() {
     var hans = GoldenRetriever("braun", 2)

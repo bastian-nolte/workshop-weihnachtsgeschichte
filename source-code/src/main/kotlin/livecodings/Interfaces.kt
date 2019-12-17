@@ -1,4 +1,4 @@
-package app.codedojo.kata.weihnachtsgeschichte.beispiele
+package app.codedojo.kata.weihnachtsgeschichte.livecodings
 
 fun main() {
     val pit = Terrier("Pit", "braun", 2)

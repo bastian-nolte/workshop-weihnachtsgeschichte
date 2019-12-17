@@ -100,6 +100,22 @@
             display: block;
         }
 
+        .subtitle {
+            font-size: 0.5em;
+            background: rgba(91, 123, 135, 0.85);
+            padding: 0 0.2em;
+            border-radius: 0.1em;
+            text-transform: none;
+        }
+
+        .detailBlock {
+            background-color: rgba(50, 50, 50, 0.9);
+            border-radius: 0.3em;
+            margin: 0 1em 1em 1em;
+            padding: 10px 0.5em;
+            font-size: 0.8em;
+        }
+
         /* Eine Klasse (uml) */
         .klasse {
             background: #7fb0c4;
@@ -109,12 +125,14 @@
             text-align: left;
             padding: 0.2em 0.4em;
         }
+
         .klasse h1 {
             font-size: 1.2em;
             text-transform: none;
             border-bottom: solid 1px white;
             margin-bottom: 0;
         }
+
         .klasse li:before {
             display: none;
         }
@@ -124,80 +142,8 @@
 <div class="reveal">
     <div class="slides">
 
-        <section style="font-size: 0.75em"
-                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
-                 data-background-size="contain">
-            <h1>
-                <tag style="font-size: 0.8em">Anforderungen</tag>
-                <span class="tiny">Dorf, Einwohner und Gruusige</span>
-            </h1>
-            <div>
-                <div class="" style="background-color: rgba(50,50,50,0.7); border-radius: 0.3em; margin: 0 1em; padding: 0.1em 0.5em">
-                    <p>Erstelle eine Klasse «Einwohner» mit den folgenden Eigenschaften:</p>
-                    <div class="klasse">
-                        <h1>Einwohner</h1>
-                        <ul>
-                            <li>name: String</li>
-                            <li>guteLauneIndex: Int = 100</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="" style="background-color: rgba(50,50,50,0.7); border-radius: 0.3em; margin: 0 1em; padding: 0.1em 0.5em">
-                    <p>Erstelle eine Klasse «Gruusige» mit den folgenden Eigenschaften:</p>
-                    <div class="klasse">
-                        <h1>Gruusige</h1>
-                    </div>
-                </div>
-                <div class="" style="background-color: rgba(50,50,50,0.7); border-radius: 0.3em; margin: 0 1em; padding: 0.1em 0.5em">
-                    <p>Erstelle eine Klasse «Lustighuusen» mit den folgenden Eigenschaften:</p>
-                    <div class="klasse">
-                        <h1>Lustighuusen</h1>
-                        <ul>
-                            <li>einwohner: Set&lt;Einwohner&gt; = Set()</li>
-                            <li>gruusige: Gruusige;</li>
-                            <li>guteLauneIndex: Int = 100</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section style="font-size: 0.75em"
-                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
-                 data-background-size="contain">
-            <h1>
-                <tag>Story</tag>
-                <span class="tiny">Bööööse Geschenke</span>
-            </h1>
-            <div>
-                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
-                    <p>Um den Bürgern den Spass am Fest zu nehmen, plant der Gruusige in einer Fabrik Geschenke zu produzieren, die nicht
-                        richtig funktionieren oder die Einwohner auf andere Art verärgern.</p>
-                </div>
-                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
-                    <ul>
-                        Definiere eine Sealed Class mit folgenden Eigenschaften
-                        <li>name: String</li>
-                        <li>geschlecht: Geschlecht</li>
-                        <li>beschreibung: String</li>
-                        …und schreibe mindestens 4 Klassen mit Defaultwerten die jeweils eine Klasse von Geschenken repräsentieren.
-                    </ul>
-                </div>
-                <br/>
-                <div class="fragment fade-in-then-semi-out" style="background-color: rgba(50,50,50,0.9); border-radius: 0.3em;">
-                    <ul style="font-size: 0.7em; text-align: left; display: block">
-                        Tips / Anmerkungen
-                        <li>Erstelle für das Geschlecht (WEIBLICH, MAENLICH, SACHLICH) eine Enumeration.</li>
-                        <li>Die Klassen sollen jeweils mit parameterlosem Constructor erzeugt werden können.</li>
-                    </ul>
-                </div>
-                <p class="bildunterschrift">Bild von <a
-                        href="https://pixabay.com/photos/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1149928">Free-Photos</a>
-                    auf
-                    <a href="https://pixabay.com/de/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1149928">Pixabay</a>
-                </p>
-            </div>
-        </section>
+
 
         <section>
             <h1>Kotlin und ReactiveX</h1>
@@ -291,7 +237,7 @@
                 <ul style="font-size: 0.8em;">
                     <li>Eine Instanz erzeugen. Init-Block mit println()-Ausgabe</li>
                     <li>Umstellen auf Default-Values.</li>
-                    <li>Properties hinzufügen (anzahlFenster & typenbezeichnung), die Null sein dürfen (?)</li>
+                    <li>Eigenschaft hinzufügen (anzahlFenster), die Null sein darf (?)</li>
                     <li>Behandlung mit «safe call operator» <code style="background: #2a76dd">?.</code>.</li>
                     <li>Behandlung mit «Elvis Operator» <code style="background: #2a76dd">?:</code>.</li>
                     <li>Für NPE-Fans: Der «<code style="background: #2a76dd">!!</code> Operator» 😈 (don't do this!)</li>
@@ -394,32 +340,6 @@ interface Eierleger {
                 <p>Seit Version 1.1 können Datenklassen andere Klassen erweitern.</p>
             </div>
         </section>
-        <section>
-            <h1>
-                <tag>Lesson</tag>
-                <span class="tiny">Versiegelte Klassen (sealed class)</span>
-            </h1>
-            <div class="fragment fade-in-then-semi-out">
-                <a class="tiny right" src="https://kotlinlang.org/docs/reference/sealed-classes.html">https://kotlinlang.org/docs/reference/sealed-classes.html</a>
-                <p>Versiegelte Klassen werden zur Darstellung eingeschränkter Klassenhierarchien verwendet, wenn ein Wert einen der Typen
-                    aus einer begrenzten Menge haben kann, aber keinen anderen Typ haben darf.</p>
-            </div>
-            <div class="fragment fade-in-then-semi-out">
-                <pre><code data-trim data-noescape>sealed class Haustier(open val alter: Int)
-
-class Katze(val fellfarbe: String, alter: Int) : Haustier(alter)
-class Kaiman(val gefresseneGnus: Int, alter: Int) : Haustier(alter)
-
-fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
-    is Katze -> println("Der Fell der Katze ist $haustier.fellfarbe.")
-    is Kaiman -> print("Der Kaiman hat ${haustier.gefresseneGnus} Gnus gefressen.")
-}</code></pre>
-            <h1 style="font-size: 0.8em">
-                <tag>Live Coding</tag>
-                <span class="tiny">Neue Klasse Dackel</span>
-            </h1>
-            </div>
-        </section>
 
         <section>
             <h1>Die Geschichte</h1>
@@ -440,6 +360,164 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
             </ul>
         </section>
 
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
+                 data-background-size="contain">
+            <h1>
+                <tag style="font-size: 0.8em">Anforderungen</tag>
+                <span class="subtitle">Dorf, Einwohner und Gruusige</span>
+            </h1>
+            <div style="background-color: rgba(50,50,50,0.7); border-radius: 0.3em; margin: 0 1em; padding: 0.1em 0.5em">
+                <div>
+                    <p>Erstelle eine Klasse «Einwohner» mit den folgenden Eigenschaften:</p>
+                    <div class="klasse">
+                        <h1>Einwohner</h1>
+                        <ul>
+                            <li>+ name: String {readOnly}</li>
+                            <li>+ guteLauneIndex: Int = 100</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <p>Erstelle eine Klasse «Gruusige» mit den folgenden Eigenschaften:</p>
+                    <div class="klasse">
+                        <h1>Gruusige</h1>
+                    </div>
+                </div>
+                <div>
+                    <p>Erstelle eine Klasse «Lustighuusen» mit den folgenden Eigenschaften:</p>
+                    <div class="klasse">
+                        <h1>Lustighuusen</h1>
+                        <ul>
+                            <li>+ einwohner: Set&lt;Einwohner&gt; = Set() {readOnly}</li>
+                            <li>+ gruusige: Gruusige; {readOnly}</li>
+                            <li>+ guteLauneIndex: Int = 100</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
+                 data-background-size="contain">
+            <h1>
+                <tag style="font-size: 0.8em">Anforderungen</tag>
+                <span class="subtitle">Erstelle eine Dorfinstanz mit Einwohnern und Gruusigem</span>
+            </h1>
+            <div>
+                <div class="" style="background-color: rgba(50,50,50,0.7); border-radius: 0.3em; margin: 0 1em; padding: 0.1em 0.5em">
+                    <p>Erstelle eine Main-Function und darin tue folgendes…</p>
+                    <ul>
+                        <li>Einen Gruusigen instantiieren.</li>
+                        <li>Ein Set mit einem Einwohner instanziieren.</li>
+                        <li>Luustighuusen mit Einwohnern und Gruusigem instanziieren.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
+                 data-background-size="contain">
+            <h1>
+                <tag style="font-size: 0.8em">Anforderungen</tag>
+                <span class="subtitle">Optimiere, wie folgt…</span>
+            </h1>
+            <div>
+                <div class="" style="background-color: rgba(50,50,50,0.7); border-radius: 0.3em; margin: 0 1em; padding: 0.1em 0.5em">
+                    <ul>
+                        <li class="fragment semi-fade-out">Verschiebe die «guteLauneIndex»-Eigenschaften aus den Konstruktoren in die
+                            Klassenkörper und schaue Dir an was dies verändert.
+                        </li>
+                        <li class="fragment fade-in-then-semi-out">Mache dann die Setter der «guteLauneIndex»-Eigenschaften privat und mache
+                            Dir die Konsequenzen bewusst.
+                        </li>
+                    </ul>
+                    <div class="fragment zoom-in">Sehr gut 😃… und weiter geht's 🥳.</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h1>
+                <tag>Lesson</tag>
+                <span class="tiny">Versiegelte Klassen (sealed class)</span>
+            </h1>
+            <div class="fragment fade-in-then-semi-out">
+                <a class="tiny right" src="https://kotlinlang.org/docs/reference/sealed-classes.html">https://kotlinlang.org/docs/reference/sealed-classes.html</a>
+                <p>Versiegelte Klassen werden zur Darstellung eingeschränkter Klassenhierarchien verwendet, wenn ein Wert einen der Typen
+                    aus einer begrenzten Menge haben kann, aber keinen anderen Typ haben darf.</p>
+            </div>
+            <div class="fragment fade-in-then-semi-out">
+                <pre><code data-trim data-noescape>sealed class Haustier(open val alter: Int)
+
+class Katze(val fellfarbe: String, alter: Int) : Haustier(alter)
+class Kaiman(val gefresseneGnus: Int, alter: Int) : Haustier(alter)
+
+fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
+    is Katze -> println("Der Fell der Katze ist $haustier.fellfarbe.")
+    is Kaiman -> print("Der Kaiman hat ${haustier.gefresseneGnus} Gnus gefressen.")
+}</code></pre>
+                <h1 style="font-size: 0.8em">
+                    <tag>Live Coding</tag>
+                    <span class="tiny">Neue Klasse Dackel</span>
+                </h1>
+            </div>
+        </section>
+
+        <section>
+            <img src="data-src/grinchface.svg" style="margin-top: -2.5em; height: 7em; border: none; background: none"/>
+            <h1 style="font-size: 0.8em">Geschenke machen nicht immer Freude!</h1>
+            <div class="fragment zoom-in">
+                <p>Um die Stimmung im Dorf zu senken, hat der Gruusige eine perfiden Plan ausgearbeitet!</p>
+                <p>Er möchte Geschenke produzieren, die die Beschenkten verärgern und so die Stimmung im Dorf drücken.</p>
+            </div>
+            <div class="fragment zoom-in">
+                🎁&nbsp;👊🏻
+            </div>
+        </section>
+
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
+                 data-background-size="contain">
+            <h1>
+                <tag>Anforderung</tag>
+                <span class="tiny">Bööööse Geschenke</span>
+            </h1>
+            <div>
+                <div class="detailBlock fragment fade-in-then-semi-out">
+                    <p>Um den Bürgern den Spass am Fest zu nehmen, plant der Gruusige in einer Fabrik Geschenke zu produzieren, die nicht
+                        richtig funktionieren oder die Einwohner auf andere Art verärgern.</p>
+                </div>
+                <div class="detailBlock fragment fade-left">
+                    <p>Definiere eine Sealed Class mit folgenden Eigenschaften</p>
+                    <div class="klasse">
+                        <h1>Geschenk</h1>
+                        <ul>
+                            <li>+ name: String {readOnly}</li>
+                            <li>+ geschlecht: Geschlecht {readOnly}</li>
+                            <li>+ beschreibung: String {readOnly}</li>
+                            <li>+ stimmungspunkte: Int {readOnly}</li>
+                        </ul>
+                    </div>
+                    <div class="fragment fade-in">
+                        <p>
+                            …und schreibe mindestens 4 Klassen mit Defaultwerten die jeweils eine Klasse von Geschenken repräsentieren.
+                        </p>
+                        <div class="klasse" style="font-size: 0.6em!important;">
+                            <h1>Kuscheltier: Geschenk</h1>
+                            <ul>
+                                <li>name = "Kuscheltier"</li>
+                                <li>geschlecht = Geschlecht.SACHLICH</li>
+                                <li>beschreibung = "Kuscheltier mit Flöhen im Fell"</li>
+                                <li>stimmungspunkte = 50</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- XXX -->
 
 

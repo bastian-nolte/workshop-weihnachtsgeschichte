@@ -1,4 +1,6 @@
-package app.codedojo.kata.weihnachtsgeschichte.beispiele
+@file:Suppress("FunctionName")
+
+package app.codedojo.kata.weihnachtsgeschichte.livecodings
 
 fun main() {
     `beschreibe Haustier`(KatzeA("blau", 3))

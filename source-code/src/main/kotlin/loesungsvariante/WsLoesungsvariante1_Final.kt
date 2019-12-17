@@ -1,27 +1,17 @@
-@file:Suppress("NonAsciiCharacters")
+@file:Suppress("NonAsciiCharacters", "FunctionName", "unused")
 
-package app.codedojo.kata.weihnachtsgeschichte.vorlage
+package app.codedojo.kata.weihnachtsgeschichte.loesungsvariante
 
-import app.codedojo.kata.weihnachtsgeschichte.vorlage.Fall.*
+import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Fall
+import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Farbe
+import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Geschlecht
+import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.`drucke in Farbe`
 import io.reactivex.Emitter
 import io.reactivex.Observable
 import java.util.concurrent.CompletableFuture
 import kotlin.properties.Delegates
 import kotlin.random.Random
 
-
-enum class Color {
-    GRUEN, GELB, ROT
-}
-
-fun `drucke in Farbe`(color: Color, text: String) {
-    val colorLiteral = when (color) {
-        Color.GRUEN -> 32
-        Color.GELB -> 33
-        Color.ROT -> 31
-    }
-    println("${27.toChar()}[${colorLiteral}m$text")
-}
 
 fun main() {
     val lustighausen = Lustighausen()
@@ -52,23 +42,23 @@ class Lustighausen {
 
 class Grinch {
     fun `liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner: Einwohner) {
-        `drucke in Farbe`(Color.GRUEN, "Der Grinch liefert ${geschenk.geschlecht.unbestimmterArtikel(AKKUSATIV)} ${geschenk.beschreibung} an ${einwohner.name}. 🥶")
+        `drucke in Farbe`(Farbe.GRUEN, "Der Grinch liefert ${geschenk.geschlecht.unbestimmterArtikel(Fall.AKKUSATIV)} ${geschenk.beschreibung} an ${einwohner.name}. 🥶")
         einwohner.`nehme Geschenk an`(geschenk)
     }
 }
 
 class Einwohner(val name: String) {
     fun `nehme Geschenk an`(geschenk: Geschenk) {
-        `drucke in Farbe`(Color.GELB, "${this.name} nimmt das ${geschenk.name} entgegen. 🥰")
+        `drucke in Farbe`(Farbe.GELB, "${this.name} nimmt das ${geschenk.name} entgegen. 🥰")
         `spiele mit Geschenk`(geschenk)
     }
 
     private fun `spiele mit Geschenk`(geschenk: Geschenk) {
         when (geschenk) {
-            is Fahrrad -> `drucke in Farbe`(Color.ROT, "$name fährt schreiend gegen Auto vom Nachbarn. 😡")
-            is Bonbon -> `drucke in Farbe`(Color.ROT, "$name schnieft wegen der Schärfe. 🤧")
-            is Kuscheltier -> `drucke in Farbe`(Color.ROT, "$name krazt sich die Haut auf. 🤬")
-            is Katze -> `drucke in Farbe`(Color.ROT, "$name wird vom Arzt genäht. ")
+            is Fahrrad -> `drucke in Farbe`(Farbe.ROT, "$name fährt schreiend gegen Auto vom Nachbarn. 😡")
+            is Bonbon -> `drucke in Farbe`(Farbe.ROT, "$name schnieft wegen der Schärfe. 🤧")
+            is Kuscheltier -> `drucke in Farbe`(Farbe.ROT, "$name krazt sich die Haut auf. 🤬")
+            is Katze -> `drucke in Farbe`(Farbe.ROT, "$name wird vom Arzt genäht. ")
         }
     }
 }
@@ -123,34 +113,6 @@ class Fabrik {
     private fun `informiere darüber, dass die Produktion nun abgeschlossen ist`() = emitter.onComplete()
 }
 
-enum class Fall { NOMINATIV, GENITIV, DATIV, AKKUSATIV }
-
-enum class Geschlecht {
-    MÄNNLICH {
-        override fun unbestimmterArtikel(fall: Fall) = when (fall) {
-            NOMINATIV -> "ein"
-            AKKUSATIV -> "einen"
-            DATIV -> "einem"
-            GENITIV -> "eines"
-        }
-    },
-    WEIBLICH {
-        override fun unbestimmterArtikel(fall: Fall) = when (fall) {
-            NOMINATIV, AKKUSATIV -> "eine"
-            DATIV, GENITIV -> "einer"
-        }
-    },
-    SACHLICH {
-        override fun unbestimmterArtikel(fall: Fall) = when (fall) {
-            NOMINATIV, AKKUSATIV -> "ein"
-            DATIV -> "einem"
-            GENITIV -> "eines"
-        }
-    };
-
-    abstract fun unbestimmterArtikel(fall: Fall): String
-}
-
 interface MitBeschreibung {
     val name: String
     val beschreibung: String
@@ -159,24 +121,29 @@ interface MitBeschreibung {
 sealed class Geschenk(
         override val name: String,
         val geschlecht: Geschlecht,
-        override val beschreibung: String) : MitBeschreibung
+        override val beschreibung: String,
+        val stimmungspunkte: Int) : MitBeschreibung
 
 class Fahrrad : Geschenk(
         name = "Fahrrad",
         geschlecht = Geschlecht.SACHLICH,
-        beschreibung = "Fahrrad dessen Bremse ab und zu ausfällt")
+        beschreibung = "Fahrrad dessen Bremse ab und zu ausfällt",
+        stimmungspunkte = 70)
 
 class Bonbon : Geschenk(
         name = "Bonbon",
         geschlecht = Geschlecht.SACHLICH,
-        beschreibung = "Bonbon mit sehr scharfer Füllung")
+        beschreibung = "Bonbon mit sehr scharfer Füllung",
+        stimmungspunkte = 20)
 
 class Kuscheltier : Geschenk(
         name = "Kuscheltier",
         geschlecht = Geschlecht.SACHLICH,
-        beschreibung = "Kuscheltier mit Flöhen im Fell")
+        beschreibung = "Kuscheltier mit Flöhen im Fell",
+        stimmungspunkte = 50)
 
 class Katze : Geschenk(
         name = "Katze",
         geschlecht = Geschlecht.WEIBLICH,
-        beschreibung = "sehr bissige Katze")
+        beschreibung = "sehr bissige Katze",
+        stimmungspunkte = 45)
