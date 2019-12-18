@@ -142,8 +142,6 @@
 <div class="reveal">
     <div class="slides">
 
-
-
         <section>
             <h1>Kotlin und ReactiveX</h1>
             <img data-src="data-src/Rx_Logo_S.png" style="border: 0; background-color: #191919; margin-right: 2em"/>
@@ -560,7 +558,8 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
                     <p><code style="padding-left: 3em">Ronaldo nimmt Kuscheltier entgegen 🥰.</code></p>
                 </div>
                 <div class="detailBlock fragment fade-in-then-semi-out">
-                    <p>Erstelle in der Klasse Gruusiger eine neue Function «liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner: Einwohner».</p>
+                    <p>Erstelle in der Klasse Gruusiger eine neue Function «liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner:
+                        Einwohner».</p>
                     <p>Starte die Anwendung und schaue die Ausgabe an.</p>
                 </div>
                 <div class="detailBlock fragment fade-in-then-semi-out">
@@ -617,7 +616,8 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
                     <p><code style="padding-left: 3em">setOf({..},{..)</code> hilft Dir dabei.</p>
                 </div>
                 <div class="detailBlock fragment fade-in-then-semi-out">
-                    <p>Füge der Klasse eine function «`erstelle Geschenk zufälligen Typs`()» hinzu, die ein zufälliges Geschenk erzeugt und zurückgibt.</p>
+                    <p>Füge der Klasse eine function «`erstelle Geschenk zufälligen Typs`()» hinzu, die ein zufälliges Geschenk erzeugt und
+                        zurückgibt.</p>
                     <p>Erstelle eine neue Eigenschaft «fabrik> in der Klasse «Lustighuusen» und weise sogleich eine Fabrikinstanz zu.</p>
                     <p>Benutze die neue Fabrik um in der «main»-Function ein zufällig generiertes Geschenk zu verwenden.</p>
                 </div>
@@ -645,15 +645,19 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
             </h1>
             <div>
                 <div class="detailBlock fragment fade-in-then-semi-out">
-                    <p>Erweitere die Klasse «Gruusige» um eine neue Function «`liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner: Einwohner)».</p>
-                    <p>Nutze die Function «<code>`drucke in Farbe`</code>» und die Enum «Geschlecht», um einen grammatikalisch korrekten Satz in der folgenden Form auszugeben…</p>
-                    <p><code style="padding-left: 3em">Der Grinch liefert ein Bonbon mit sehr scharfer Füllung an Johannes-Rudolf. 🥶</code></p>
+                    <p>Erweitere die Klasse «Gruusige» um eine neue Function «`liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner:
+                        Einwohner)».</p>
+                    <p>Nutze die Function «<code>`drucke in Farbe`</code>» und die Enum «Geschlecht», um einen grammatikalisch korrekten
+                        Satz in der folgenden Form auszugeben…</p>
+                    <p><code style="padding-left: 3em">Der Grinch liefert ein Bonbon mit sehr scharfer Füllung an Johannes-Rudolf. 🥶</code>
+                    </p>
                     <p>Rufe dann die Function «einwohner.`nehme Geschenk an`()» auf, um das Geschenk zu übergeben.</p>
                 </div>
                 <div class="detailBlock fragment fade-in-then-semi-out">
                     <p>Passe abschliessend die Aufrufe in der «main»-Function an.</p>
                     <p>Nutze <code>with(lustighuusen) {…</code> für einen einfachen Zugriff auf die Properties.</p>
                     <p>Hole einen zufälligen Einwohner, erzeuge ein zufälliges Geschenk und lasse den Grinch das Geschenk ausliefern.</p>
+                    <p>Erstelle eine «forEach»-Schleife um 25 Geschenke zu produzieren und zu verteilen.</p>
                     <p>Starte die Anwendung und stelle sicher, dass alles funktioniert.</p>
                 </div>
                 <div class="detailBlock fragment fade-in-then-semi-out">
@@ -662,6 +666,46 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
             </div>
         </section>
 
+        <section data-background-image="data-src/xmas-2928142.jpg">
+            <div style="background-color: rgba(50,50,50,0.6); border-radius: 0.3em; font-size: 0.8em">
+                <h1>Was erwartet Euch im Teil 2?</h1>
+                <p class="fragment fade-in-then-semi-out tiny" style="padding: 0 1.2em 0.5em 1.2em">Der Grinch erweitert seine Fabrik. Es
+                    werden zeitgleich Geschenke mit unterschiedlicher Produktionsdauer gebaut und ausgeliefert bis ein festgelegter
+                    Stimmungswert in Lustighuusen erreicht ist.</p>
+                <ul>
+                    <li class="fragment fade-in-then-semi-out">Asynchronität mit «CompletableFutures»</li>
+                    <li class="fragment fade-in-then-semi-out">«Observable properties» und deren Anwendung</li>
+                    <li class="fragment fade-in-then-semi-out">ReactiveX
+                        <ul>
+                            <li>Observable Streams</li>
+                            <li>Emmiter (onNext, onError, onComplete)</li>
+                            <li>weiteres zum Thema Reactive X</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section data-background-image="data-src/xmas-2928142.jpg">
+            <div style="background-color: rgba(50,50,50,0.6); border-radius: 0.3em; font-size: 0.8em">
+                <h1>Aussicht auf Teil 3</h1>
+                <div class="fragment fade-in-then-semi-out">
+                    <p style="padding: 0 1.2em 0.5em 1.2em">Bei Interesse…</p>
+                    <ul>
+                        <li>Ausbau auf Mircoservice mit Server Sent Events</li>
+                        <li>Single Page Application die in «Realtime» visualisiert…
+                            <ul>
+                                <li>Die Einwohner</li>
+                                <li>Zufluss der Geschenke an die Einwohner</li>
+                                <li>Stimmungswandel</li>
+                            </ul>
+                        </li>
+                        <li>…mit animierten Grafiken.</li>
+                    </ul>
+                </div>
+                <h2 class="fragment fade-in-then-semi-out" style="margin: 1em;">Vielen Dank für Eure Teilnahme! 😃</h2>
+            </div>
+        </section>
         <!-- XXX -->
 
 

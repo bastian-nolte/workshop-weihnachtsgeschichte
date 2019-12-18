@@ -13,9 +13,11 @@ fun main() {
     val lustighuusen = Lustighuusen(`einwohner aus Datei lesen`(), gruusige)
     // Neues 2 >>
     with(lustighuusen) {
-        val zufaelligerEinwohner = einwohner.random()
-        val geschenk = fabrik.`erstelle Geschenk zufälligen Typs`()
-        gruusige.`liefere Geschenk an Einwohner`(geschenk, zufaelligerEinwohner)
+        (1..15).forEach {
+            val zufaelligerEinwohner = einwohner.random()
+            val geschenk = fabrik.`erstelle Geschenk zufälligen Typs`()
+            gruusige.`liefere Geschenk an Einwohner`(geschenk, zufaelligerEinwohner)
+        }
     }
     // << eoNeues2
 }
