@@ -144,7 +144,6 @@
 
 
 
-
         <section>
             <h1>Kotlin und ReactiveX</h1>
             <img data-src="data-src/Rx_Logo_S.png" style="border: 0; background-color: #191919; margin-right: 2em"/>
@@ -561,9 +560,24 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
                     <p><code style="padding-left: 3em">Ronaldo nimmt Kuscheltier entgegen 🥰.</code></p>
                 </div>
                 <div class="detailBlock fragment fade-in-then-semi-out">
+                    <p>Erstelle in der Klasse Gruusiger eine neue Function «liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner: Einwohner».</p>
+                    <p>Starte die Anwendung und schaue die Ausgabe an.</p>
+                </div>
+                <div class="detailBlock fragment fade-in-then-semi-out">
                     <p>Erstelle in der «main»-Function ein Geschenk und übergebe es einer zufällig gewählten Person.</p>
                     <p>Starte die Anwendung und schaue die Ausgabe an.</p>
                 </div>
+            </div>
+        </section>
+
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
+                 data-background-size="contain">
+            <h1>
+                <tag>Anforderung</tag>
+                <span class="tiny">Das Geschenk wird ausgepackt! 🎁 🤨 😡</span>
+            </h1>
+            <div>
                 <div class="detailBlock fragment fade-in-then-semi-out">
                     <p>Erstelle in der Klasse Einwohner eine neue private Function «`spiele mit Geschenk`(geschenk: Geschenk)»</p>
                     <p>Nutze «<code>when() {…is…</code>» um die unterschiedlichen Fälle abzuhandeln und einen passenden Text in roter Farbe
@@ -612,6 +626,42 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
                 </div>
             </div>
         </section>
+
+        <section>
+            <img src="data-src/grinchface.svg" style="margin-top: -2.5em; height: 7em; border: none; background: none"/>
+            <h1 style="font-size: 0.8em">Selbst ausliefern macht doppelt Spass! 😬</h1>
+            <div class="fragment zoom-in" style="display: block; text-align: center">
+                <p>Das hat ja super funktioniert.</p>
+                <p>Der Grinch möchte aber die Geschenke persönlich ausliefern.</p>
+            </div>
+        </section>
+
+        <section style="font-size: 0.75em"
+                 data-background-image="data-src/winterdorf_shutterstock_522579127.svg"
+                 data-background-size="contain">
+            <h1>
+                <tag>Anforderung</tag>
+                <span class="subtitle">Geschenke ausliefern. 🛺</span>
+            </h1>
+            <div>
+                <div class="detailBlock fragment fade-in-then-semi-out">
+                    <p>Erweitere die Klasse «Gruusige» um eine neue Function «`liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner: Einwohner)».</p>
+                    <p>Nutze die Function «<code>`drucke in Farbe`</code>» und die Enum «Geschlecht», um einen grammatikalisch korrekten Satz in der folgenden Form auszugeben…</p>
+                    <p><code style="padding-left: 3em">Der Grinch liefert ein Bonbon mit sehr scharfer Füllung an Johannes-Rudolf. 🥶</code></p>
+                    <p>Rufe dann die Function «einwohner.`nehme Geschenk an`()» auf, um das Geschenk zu übergeben.</p>
+                </div>
+                <div class="detailBlock fragment fade-in-then-semi-out">
+                    <p>Passe abschliessend die Aufrufe in der «main»-Function an.</p>
+                    <p>Nutze <code>with(lustighuusen) {…</code> für einen einfachen Zugriff auf die Properties.</p>
+                    <p>Hole einen zufälligen Einwohner, erzeuge ein zufälliges Geschenk und lasse den Grinch das Geschenk ausliefern.</p>
+                    <p>Starte die Anwendung und stelle sicher, dass alles funktioniert.</p>
+                </div>
+                <div class="detailBlock fragment fade-in-then-semi-out">
+                    Klappt alles? Falls ja, dann sehr gut! Der Gruusige liebt es die Geschenke selbst zu überbringen!!
+                </div>
+            </div>
+        </section>
+
         <!-- XXX -->
 
 
