@@ -10,7 +10,9 @@ import java.io.File
 fun main() {
     val gruusige = Gruusige()
     val lustighuusen = Lustighuusen(`einwohner aus Datei lesen`(), gruusige)
-    lustighuusen.einwohner.random().`nehme Geschenk an`(Kuscheltier())
+    // Neues 2 >>
+    lustighuusen.einwohner.random().`nehme Geschenk an`(lustighuusen.fabrik.`erstelle Geschenk zufälligen Typs`())
+    // << eoNeues2
 }
 
 fun `einwohner aus Datei lesen`(): Set<Einwohner> {
@@ -22,6 +24,9 @@ fun `einwohner aus Datei lesen`(): Set<Einwohner> {
 class Lustighuusen(val einwohner: Set<Einwohner>, val gruusige: Gruusige) {
     var guteLauneIndex: Int = 100
         private set
+    // Neues 2 >>
+    val fabrik = Fabrik()
+    // << eoNeues 2
 }
 
 class Einwohner(val name: String) {
@@ -44,6 +49,14 @@ class Einwohner(val name: String) {
 }
 
 class Gruusige
+
+// Neues >>
+class Fabrik {
+    private val geschenkeMaschine: Set<() -> Geschenk> = setOf({ Fahrrad() }, { Bonbon() }, { Kuscheltier() }, { Katze() })
+
+    fun `erstelle Geschenk zufälligen Typs`() = geschenkeMaschine.random().invoke()
+}
+// << eoNeues
 
 sealed class Geschenk(
         val name: String,
