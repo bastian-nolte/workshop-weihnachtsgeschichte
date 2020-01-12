@@ -1,6 +1,6 @@
-@file:Suppress("EXPERIMENTAL_FEATURE_WARNING", "FunctionName", "NonAsciiCharacters")
+@file:Suppress("EXPERIMENTAL_FEATURE_WARNING", "FunctionName", "NonAsciiCharacters", "PackageDirectoryMismatch")
 
-package app.codedojo.kata.weihnachtsgeschichte.livecodings
+package app.codedojo.kata.weihnachtsgeschichte.livecodings.c4
 
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Farbe
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.`drucke in Farbe`
@@ -53,6 +53,7 @@ data class Motor(
         var hubraum: Hubraum)
 
 
+// Experimentelles Feature
 inline class Marke(val markenname: String)
 inline class Leistung(val kilowatt: Int)
 inline class Hubraum(val liter: Int)

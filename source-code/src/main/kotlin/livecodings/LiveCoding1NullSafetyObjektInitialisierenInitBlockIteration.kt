@@ -1,6 +1,6 @@
-@file:Suppress("CanBeParameter")
+@file:Suppress("CanBeParameter", "PackageDirectoryMismatch")
 
-package app.codedojo.kata.weihnachtsgeschichte.livecodings
+package app.codedojo.kata.weihnachtsgeschichte.livecodings.c1
 
 fun main() {
     val fahrstuhl = Fahrstuhl(anzahlFenster = null)

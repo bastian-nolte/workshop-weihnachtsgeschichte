@@ -1,4 +1,6 @@
-package app.codedojo.kata.weihnachtsgeschichte.livecodings
+@file:Suppress("PackageDirectoryMismatch")
+
+package app.codedojo.kata.weihnachtsgeschichte.livecodings.c2
 
 fun main() {
     var hans = GoldenRetriever("braun", 2)
