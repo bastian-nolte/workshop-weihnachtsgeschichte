@@ -17,20 +17,20 @@ fun `wie verhält sich copy in kotlin`() {
     val pkwKopie = pkw.copy(marke = Marke("tolosa"))
     val pkwDeepCopyGson = pkw.`deep copy with Gson`()
 
-    println("Hubraum Originalmotor: ${motor.hubraum}")
+    `drucke in Farbe`(Farbe.GRUEN,"Hubraum Originalmotor: ${motor.hubraum}")
     println("Hubraum Motor der PKW-Kopie: ${pkwKopie.motor.hubraum}")
-    println("Neuer Hubraum Motor der PKW-Kopie mit Gson: ${pkwDeepCopyGson.motor.hubraum}")
+    println("Hubraum Motor der PKW-Kopie mit Gson: ${pkwDeepCopyGson.motor.hubraum}")
     println()
 
-    `drucke in Farbe`(Farbe.GELB, "Beweis: Kein Deep Copy durch die copy-Methode von Koltin:")
+    `drucke in Farbe`(Farbe.ROT, "Beweis: Kein Deep Copy durch die copy-Methode von Koltin:")
     motor.hubraum = Hubraum(2200)
     println("Neuer Hubraum Originalmotor: ${motor.hubraum}")
-    println("Neuer Hubraum Motor der PKW-Kopie: ${pkwKopie.motor.hubraum}")
+    `drucke in Farbe`(Farbe.ROT,"Neuer Hubraum Motor der PKW-Kopie: ${pkwKopie.motor.hubraum}")
     println()
 
     `drucke in Farbe`(Farbe.GRUEN, "Beweis: Deep Copy durch externe Libraries funktioniert:")
     println("Neuer Hubraum Originalmotor: ${motor.hubraum}")
-    println("Neuer Hubraum Motor der PKW-Kopie: ${pkwDeepCopyGson.motor.hubraum}")
+    `drucke in Farbe`(Farbe.GRUEN,"Neuer Hubraum Motor der PKW-Kopie: ${pkwDeepCopyGson.motor.hubraum}")
 }
 
 data class Pkw(
