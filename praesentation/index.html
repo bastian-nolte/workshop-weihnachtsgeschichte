@@ -166,8 +166,9 @@
                         <ul>
                             <li style="margin: 0">Kotlin</li>
                             <li style="margin: 0">Observable Streams und ReactiveX (funktionale Programmierung)</li>
-                            <li style="margin: 0">AWL 2.0 >> Kubernetes</li>
-                            <li style="margin: 0">Websockets oder SSE</li>
+                            <li style="margin: 0">Domain Driven Design in der Praxis</li>
+                            <li style="margin: 0">AWL 2.0 >> Kubernetes (Vorbereitung, Deployment, usw.)</li>
+                            <li style="margin: 0">Websockets oder Server Sent Events</li>
                         </ul>
                     </li>
                 </ul>
@@ -484,6 +485,7 @@ interface Eierleger {
                         <li class="">Erstelle eine Function «`einwohner ausgeben`(einwohner: Set&lt;Einwohner&gt;)».
                         </li>
                         <li>Nutze «einwohner.withIndex» in Verbindung mit «for» um die Namen aller Einwohner und dessen Index auszugeben.
+                            <br/>Tip: ⌥ + ⮐ hilft Dir dabei effizient zu programmieren!
                         </li>
                     </ul>
                     <p>&nbsp;</p>
@@ -587,11 +589,6 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
                     <p><code style="padding-left: 3em">Ronaldo nimmt Kuscheltier entgegen 🥰.</code></p>
                 </div>
                 <div class="detailBlock fragment fade-in-then-semi-out">
-                    <p>Erstelle in der Klasse Gruusiger eine neue Function «liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner:
-                        Einwohner».</p>
-                    <p>Starte die Anwendung und schaue die Ausgabe an.</p>
-                </div>
-                <div class="detailBlock fragment fade-in-then-semi-out">
                     <p>Erstelle in der «main»-Function ein Geschenk und übergebe es einer zufällig gewählten Person.</p>
                     <p>Starte die Anwendung und schaue die Ausgabe an.</p>
                 </div>
@@ -609,7 +606,7 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
                 <div class="detailBlock fragment fade-in-then-semi-out">
                     <p>Erstelle in der Klasse Einwohner eine neue private Function «`spiele mit Geschenk`(geschenk: Geschenk)»</p>
                     <p>Nutze «<code>when() {…is…</code>» um die unterschiedlichen Fälle abzuhandeln und einen passenden Text in roter Farbe
-                        auszugeben…</p>
+                        auszugeben, z.B…</p>
                     <p><code style="padding-left: 3em">Ronaldo kratzt sich die Haut auf 🤬.</code></p>
                     <p>Rufe diese neue Function am Ende der Function «nehme Geschenk an» auf.</p>
                     <p>Starte die Anwendung und schaue die erweiterte Ausgabe an.</p>
@@ -622,7 +619,8 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
             <h1 style="font-size: 0.8em">Wie brauchen meeehr Geschenke. Die Fabrik!</h1>
             <div class="fragment zoom-in" style="display: block; text-align: center">
                 <p>«Das hat ja super geklappt 😈 🥳», denkt sich der Gruusige.</p>
-                <p>Also wird es Zeit die Produktion in einer Fabrik auszubauen.</p>
+                <p>Aber immer das gleiche Geschänk ist ja langweilig. Ausserdem sind es viel zu wenig Geschenke!</p>
+                <p>Es wird Zeit die Produktion in einer Fabrik auszubauen.</p>
             </div>
         </section>
 
@@ -717,27 +715,38 @@ fun `beschreibe Haustier`(haustier: Haustier) = when (haustier) {
 
         <section data-background-image="data-src/xmas-2928142.jpg">
             <div style="background-color: rgba(50,50,50,0.6); border-radius: 0.3em; font-size: 0.8em">
-                <h1>Aussicht auf Teil 3</h1>
+                <h1>Aussicht auf die Zukunft…</h1>
                 <div class="fragment fade-in-then-semi-out">
-                    <p style="padding: 0 1.2em 0.5em 1.2em">Bei Interesse…</p>
                     <ul>
-                        <li>Ausbau auf Mircoservice mit Server Sent Events</li>
-                        <li>Single Page Application die in «Realtime» visualisiert…
+                        <li style="margin:0">Betrachtung aus Sicht Domain Driven Design? <br/>Ist die Anwendung schon optimal aufgebaut?</li>
+                        <li style="margin:0">Umbau auf Microservice mit Quarkus und GraalVM</li>
+                        <li style="margin:0">Grundlagen AWL 2.0 und Kubernetes</li>
+                        <li style="margin:0">Deployment und Betrieb in der AWL 2.0 Cloud</li>
+                        <li style="margin:0">Erweiterung um Server Sent Events oder Websockets</li>
+                        <li style="margin:0">Single Page Application die in «Realtime» visualisiert…
                             <ul>
-                                <li>Die Einwohner</li>
-                                <li>Zufluss der Geschenke an die Einwohner</li>
-                                <li>Stimmungswandel</li>
+                                <li style="margin:0">Die Einwohner</li>
+                                <li style="margin:0">Zufluss der Geschenke an die Einwohner</li>
+                                <li style="margin:0">Stimmungswandel</li>
                             </ul>
                         </li>
                         <li>…mit animierten Grafiken.</li>
                     </ul>
                 </div>
-                <h2 class="fragment fade-in-then-semi-out" style="margin: 1em;">Vielen Dank für Eure Teilnahme! 😃</h2>
             </div>
         </section>
-        <!-- XXX -->
 
-
+        <section data-background-image="data-src/xmas-2928142.jpg">
+            <div style="background-color: rgba(50,50,50,0.6); border-radius: 0.3em; font-size: 0.8em">
+                <h1>Vielen Dank…</h1>
+                <h2 style="margin: 0em;">…für Eure Teilnahme! 😃</h2>
+                <ul>
+                    <li>Fragen?</li>
+                    <li>Anmerkungen?<br></li>
+                    <li>Falls noch Zeit… Planung der nächsten Workshoptermine.</li>
+                </ul>
+            </div>
+        </section>
     </div>
 </div>
 
