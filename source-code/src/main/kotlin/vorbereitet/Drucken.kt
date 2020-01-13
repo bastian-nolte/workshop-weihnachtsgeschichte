@@ -11,5 +11,5 @@ fun `drucke in Farbe`(color: Farbe, text: String) {
         Farbe.ROT -> 31
         Farbe.BRAUN -> 34
     }
-    println("${27.toChar()}[${colorLiteral}m$text")
+    println("${27.toChar()}[${colorLiteral}m$text${27.toChar()}[0m")
 }
