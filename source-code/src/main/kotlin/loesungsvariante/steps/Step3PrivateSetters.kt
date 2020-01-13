@@ -9,13 +9,17 @@ fun main() {
 }
 
 class Lustighuusen(val einwohner: Set<Einwohner>, val gruusige: Gruusige) {
+    // Neues >>
     var guteLauneIndex: Int = 100
         private set
+    // << Neues
 }
 
 class Einwohner(val name: String) {
+    // Neues >>
     var guteLauneIndex: Int = 100
         private set
+    // << Neues
 }
 
 class Gruusige

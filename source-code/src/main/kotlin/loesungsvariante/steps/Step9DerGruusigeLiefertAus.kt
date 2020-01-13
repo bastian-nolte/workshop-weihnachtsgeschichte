@@ -1,7 +1,8 @@
-@file:Suppress("unused", "PackageDirectoryMismatch", "UNUSED_VARIABLE", "FunctionName", "DuplicatedCode")
+@file:Suppress("unused", "PackageDirectoryMismatch", "UNUSED_VARIABLE", "FunctionName", "DuplicatedCode", "SpellCheckingInspection", "NonAsciiCharacters")
 
-package app.codedojo.kata.weihnachtsgeschichte.vorlagen.s7
+package app.codedojo.kata.weihnachtsgeschichte.vorlagen.s9
 
+import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Fall
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Farbe
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Geschlecht
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.`drucke in Farbe`
@@ -11,7 +12,13 @@ fun main() {
     val gruusige = Gruusige()
     val lustighuusen = Lustighuusen(`einwohner aus Datei lesen`(), gruusige)
     // Neues 2 >>
-    lustighuusen.einwohner.random().`nehme Geschenk an`(lustighuusen.fabrik.`erstelle Geschenk zufälligen Typs`())
+    with(lustighuusen) {
+        (1..25).forEach {
+            val zufaelligerEinwohner = einwohner.random()
+            val geschenk = fabrik.`erstelle Geschenk zufälligen Typs`()
+            gruusige.`liefere Geschenk an Einwohner`(geschenk, zufaelligerEinwohner)
+        }
+    }
     // << eoNeues2
 }
 
@@ -24,9 +31,7 @@ fun `einwohner aus Datei lesen`(): Set<Einwohner> {
 class Lustighuusen(val einwohner: Set<Einwohner>, val gruusige: Gruusige) {
     var guteLauneIndex: Int = 100
         private set
-    // Neues 2 >>
     val fabrik = Fabrik()
-    // << eoNeues 2
 }
 
 class Einwohner(val name: String) {
@@ -48,15 +53,20 @@ class Einwohner(val name: String) {
     }
 }
 
-class Gruusige
+class Gruusige {
+    // Neues 1 >>
+    fun `liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner: Einwohner) {
+        `drucke in Farbe`(Farbe.GRUEN, "Der Grinch liefert ${geschenk.geschlecht.unbestimmterArtikel(Fall.AKKUSATIV)} ${geschenk.beschreibung} an ${einwohner.name}. 🥶")
+        einwohner.`nehme Geschenk an`(geschenk)
+    }
+    // << eoNeues 1
+}
 
-// Neues >>
 class Fabrik {
     private val geschenkeMaschine: Set<() -> Geschenk> = setOf({ Fahrrad() }, { Bonbon() }, { Kuscheltier() }, { Katze() })
 
     fun `erstelle Geschenk zufälligen Typs`() = geschenkeMaschine.random().invoke()
 }
-// << eoNeues
 
 sealed class Geschenk(
         val name: String,
