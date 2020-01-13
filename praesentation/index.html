@@ -85,6 +85,7 @@
             background-color: lightskyblue;
             color: darkslategray;
             margin-right: 0.5em;
+            padding: 0em 0.2em;
         }
 
         .tiny {
@@ -143,20 +144,48 @@
     <div class="slides">
 
         <section>
-            <h1>Kotlin und ReactiveX</h1>
-            <img data-src="data-src/Rx_Logo_S.png" style="border: 0; background-color: #191919; margin-right: 2em"/>
-            <img data-src="data-src/Kotlin-logo.svg" style="border: 0; width: 100px;  background-color: #191919"/>
+            <h1>Kotlin - ReactiveX - Kubernetes</h1>
+            <img data-src="data-src/Rx_Logo_S.png" style="border: 0; background-color: #191919; margin-right: 1.5em"/>
+            <img data-src="data-src/Kotlin-logo.svg" style="border: 0; width: 100px;  background-color: #191919; margin-right: 1.5em" />
+            <img data-src="data-src/Kubernetes-logo.svg" style="border: 0; width: 110px;  background-color: #191919"/>
             <h2>Eine Weihnachtsgeschichte</h2>
         </section>
+
+        <section>
+            <div style="background-color: rgba(50,50,50,0.6); border-radius: 0.3em;">
+                <h1 style="font-size: 1.1em">Anpassungen auf Basis unserer Retro</h1>
+                <ul>
+                    <li class="fragment fade-in-then-semi-out">Zeitlicher Ablauf der Workshops…
+                        <ul>
+                            <li style="margin: 0">Jede Woche</li>
+                            <li style="margin: 0">Dafür nur noch halbtags</li>
+                            <li style="margin: 0">Vorschlag: Mittwochs, Freitags oder im Wechsel</li>
+                        </ul>
+                    </li>
+                    <li class="fragment fade-in-then-semi-out">Themen
+                        <ul>
+                            <li style="margin: 0">Kotlin</li>
+                            <li style="margin: 0">Observable Streams und ReactiveX (funktionale Programmierung)</li>
+                            <li style="margin: 0">AWL 2.0 >> Kubernetes</li>
+                            <li style="margin: 0">Websockets oder SSE</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
         <section data-background-image="data-src/xmas-2928142.jpg">
             <div style="background-color: rgba(50,50,50,0.6); border-radius: 0.3em;">
-                <h1>Was erwartet Euch in diesem Workshop?</h1>
+                <h1 style="font-size: 1.1em">Was erwartet Euch in dieser Workshop&#8209;Serie?</h1>
                 <ul>
                     <li class="fragment fade-in-then-semi-out">Wir giessen gemeinsam eine Weihnachtsgeschichte in Code</li>
-                    <li class="fragment fade-in-then-semi-out">Eingesetzte Technologien
+                    <li class="fragment fade-in-then-semi-out">Folgende Workshopblöcke sind geplant…
                         <ul>
-                            <li>Programmiersprache > Kotlin</li>
-                            <li>asynchrone Programmierung mit «observable streams» <br/>mit ReaxtiveX</li>
+                            <li><tag>WS1</tag> Die Grundlagen der Programmiersprache «Kotlin»</li>
+                            <li><tag>WS2</tag> Grundlagen der asynchronen und funktionalen Programmierung mit «observable&nbsp;streams» und ReactiveX</li>
+                            <li><tag>WS3</tag> Hochperformate Microservices mit Quarkus und GraalVM</li>
+                            <li><tag>WS4</tag> Vorbereitung für die AWL 2.0 und Deployment in die Kubernetes Cloud</li>
+                            <li><tag>WS5</tag> Realtimedarstellung in Angular mit WebSockets oder Server&#8209;Sent&nbsp;Events</li>
                         </ul>
                     </li>
                 </ul>
@@ -291,7 +320,7 @@
                 <span class="tiny">Vererbung & Konfliktlösung</span>
             </h1>
             <div class="fragment fade-in-then-semi-out">
-                <pre><code data-trim data-noescape>class Kloakentiere: Saeugetier, Eierleger {
+                <pre><code data-trim data-noescape>class Kloakentier: Saeugetier, Eierleger {
     override fun `planze fort`() {
         super&lt;Eierleger&gt;.`planze fort`()
     }
@@ -348,7 +377,7 @@ interface Eierleger {
             </ul>
         </section>
         <section>
-            <img src="data-src/grinchface.svg" style="margin-top: -2.5em; height: 7em; border: none; background: none"/>
+            <img src="data-src/grinchface.svg" style="margin-top: -2.5em; height: 7em; border: none; background: rgba(0,0,0,0)"/>
             <h1>Der Gruusige</h1>
             <ul>
                 <li class="fragment fade-in-then-semi-out">…wurde als Kind immer geärgert</li>
