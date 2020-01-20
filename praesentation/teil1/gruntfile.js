@@ -4,7 +4,7 @@ module.exports = grunt => {
 
 	require('load-grunt-tasks')(grunt);
 
-	let port = grunt.option('port') || 8000;
+	let port = grunt.option('port') || 8001;
 	let root = grunt.option('root') || '.';
 
 	if (!Array.isArray(root)) root = [root];
@@ -157,7 +157,7 @@ module.exports = grunt => {
 				files: root.map(path => path + '/*.md')
 			},
 			options: {
-				livereload: true
+				livereload: 35732
 			}
 		}
 
