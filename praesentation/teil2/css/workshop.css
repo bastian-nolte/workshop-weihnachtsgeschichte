@@ -1,0 +1,149 @@
+body > div.reveal {
+    font-size: 27px;
+}
+
+div.reveal h1 {
+    font-size: 2.3em;
+}
+
+div.reveal h2 {
+    font-size: 1.8em;
+    text-transform: none;
+}
+
+div.reveal h3 {
+    font-size: 1.4em;
+    text-transform: none;
+}
+
+.subtitle {
+    font-size: 0.5em;
+    background: rgba(91, 123, 135, 0.85);
+    padding: 0 0.2em;
+    border-radius: 0.1em;
+    text-transform: none;
+}
+
+div.reveal p {
+    text-align: left;
+}
+
+div.half-size {
+    font-size: 0.5em;
+}
+
+.right {
+    text-align: right;
+    display: block;
+}
+
+.float-left > * {
+    float: left;
+}
+
+.float-left > .vector-graphic {
+    margin-right: 20px !important;
+}
+
+.vector-graphic {
+    border: none !important;
+    background: none !important;
+}
+
+.with200 {
+    width: 200px;
+}
+
+div.reveal ul {
+    font-size: 1.55em;
+}
+
+div.reveal li {
+    font-size: 0.65em;
+
+    padding-top: 0.5em;
+    list-style: none;
+    padding-left: 1.5em;
+    text-indent: -1.5em;
+}
+
+div.reveal li:before {
+    background-size: contain;
+    content: '';
+    display: inline-block;
+    margin-right: 0.5em;
+    height: 1em;
+    width: 1em;
+    background-image: url("../assets/santa-icon.png");
+}
+
+div.reveal li li {
+    font-size: 0.7em;
+    margin-bottom: 0.5em;
+}
+
+span.header {
+    font-size: 1.2em;
+    text-decoration: underline;
+}
+
+/* Link (Referenz) */
+a.reference {
+    text-align: right;
+    display: block;
+    font-size: 0.8em;
+    margin-top: -1em;
+}
+
+/* Block mit Hintergrundfarbe */
+.block-gray {
+    background-color: rgba(50, 50, 50, 0.6);
+    border-radius: 0.3em;
+}
+
+.block-gray-transparent {
+    background-color: rgba(50, 50, 50, 0.6);
+    border-radius: 0.3em;
+}
+
+/* Eine Klasse (uml) */
+.klasse {
+    background: #7fb0c4;
+    border-radius: 0.2em;
+    display: inline-block;
+    font-size: 0.7em;
+    text-align: left;
+    padding: 0.2em 0.4em;
+}
+
+.klasse h1 {
+    font-size: 1.2em;
+    text-transform: none;
+    border-bottom: solid 1px white;
+    margin-bottom: 0;
+}
+
+.klasse li:before {
+    display: none;
+}
+
+
+.programming-languages-grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 0 0;
+    align-content: center
+}
+
+.observer-pattern-best-ideas-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 1em 1em;
+    align-content: center
+}
+
+.text-gradient1 {
+    background-image:linear-gradient(90deg,blue,yellow,red,purple);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

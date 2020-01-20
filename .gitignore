@@ -36,3 +36,7 @@ release.properties
 
 # NPM
 node_modules/
+
+# reveal.js
+reveal.min.css
+reveal.min.js
