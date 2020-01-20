@@ -12,7 +12,9 @@ fun main() {
 }
 
 fun `wie verhält sich copy in kotlin`() {
-    val motor = Motor(Leistung(185), Hubraum(2500))
+    val motor = Motor(Leistung(185), Hubraum(2500), setOf(Ventil("Titan"), Ventil("Edelstahl")))
+    `drucke in Farbe`(Farbe.ROT, motor.toString())
+
     val pkw = Pkw(Marke("Audos"), motor)
     val pkwKopie = pkw.copy(marke = Marke("tolosa"))
     val pkwDeepCopyGson = pkw.`deep copy with Gson`()
@@ -50,10 +52,12 @@ data class Motor(
         val leistung: Leistung,
         // Read/Write damit wir Deep-Copy testen können.
         // Ist das ein gutes Pattern? Meist nicht wirklich.
-        var hubraum: Hubraum)
+        var hubraum: Hubraum,
+        val ventile: Set<Ventil>)
 
 
 // Experimentelles Feature
 inline class Marke(val markenname: String)
 inline class Leistung(val kilowatt: Int)
 inline class Hubraum(val liter: Int)
+inline class Ventil(val material: String)
