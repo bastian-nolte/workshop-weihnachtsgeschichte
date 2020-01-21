@@ -26,8 +26,8 @@
 </head>
 <body>
 <div class="reveal">
-    <div class="slides" style="width: 100%!important;">
-        <section>
+    <div class="slides">
+        <section data-transition="convex">
             <h1>Kotlin - ReactiveX - Kubernetes</h1>
             <h2>Eine Weihnachtsgeschichte</h2>
             <img src="assets/logo/programming-languages/kotlin-logo.svg"
@@ -39,7 +39,32 @@
             <h2>Teil 2 - Entwicklung mit ReactiveX</h2>
         </section>
         <section>
-            <h1>ReactiveX</h1>
+            <h2>Was wir erreichen wollen<br/>in einem Satz</h2>
+            <div class="fragment" style="text-align: center; margin-top: 2em;">
+                <p style="text-align: center;">Ziel des Kurses ist es die Teilnehmer zu befähigen,<br/>
+                    eine Anwendung <span class="hljs-code">[Fullstack]</span> über alle Schichten hinweg zu planen und zu entwickeln<br/>
+                    und diese dann in der Kubernetes-Cloud zu betreiben<br/><span class="hljs-code">[DevOPs] / [AWL 2.0]</span>.</p>
+            </div>
+            <div class="fragment">
+                <p style="text-align: center">«Enabling Fullstack Development in der AWL 2.0»</p>
+            </div>
+        </section>
+        <section data-transition="convex">
+            <h2>ReactiveX</h2>
+            <blockquote>
+                <p>…ist eine Bibliothek zur Erstellung von asynchronen und ereignisbasierten Programmen unter Verwendung beobachtbarer
+                    Sequenzen.</p>
+                <p>Sie erweitert das Beobachtungsmuster zur Unterstützung von Daten- und/oder Ereignissequenzen und fügt Operatoren hinzu,
+                    die
+                    es Ihnen ermöglichen, Sequenzen deklarativ zusammenzusetzen und gleichzeitig Bedenken über Dinge wie
+                    Low-Level-Threading,
+                    Synchronisierung, Thread-Sicherheit, gleichzeitige Datenstrukturen und nicht-blockierende E/As auszuräumen.</p>
+                <span class="source">Zitat von <a href="http://reactivex.io/intro.html">http://reactivex.io/intro.html</a></span>
+            </blockquote>
+            <p class="fragment">Ok. Na dann ist ja alles klar! 🧐</p>
+        </section>
+        <section>
+            <h2>ReactiveX</h2>
             <h2>…hat eine grosse Verbreitung</h2>
             <div class="fragment convex">
                 <img src="assets/logo/companies/soundcloud-orange.png" class="vector-graphic with200" style="margin-bottom: 2em;"/>
@@ -100,16 +125,41 @@
             </div>
         </section>
         <section>
-            <h2>Allgegenwärtig</h2>
+            <h2>ReactiveX</h2>
+            <h2>…ist allgegenwärtig</h2>
             <ul>
-                <li class="fragment"><span class="header">Frontend</span><br/>Handhabung von Ereignissen im Benutzerinterface z.B. mit RxJS in Angular.</li>
-                <li class="fragment"><span class="header">Middleware/Backend</span><br/>ReactiveX hilft durch seine Asynchronität dabei, Nebenläufigkeit zu
+                <li class="fragment"><span class="header">Frontend</span><br/>Handhabung von Ereignissen im Benutzerinterface z.B. mit RxJS
+                    in Angular.
+                </li>
+                <li class="fragment"><span class="header">Middleware/Backend</span><br/>ReactiveX hilft durch seine Asynchronität dabei,
+                    Nebenläufigkeit zu
                     ermöglichen und unabhängige
                     Implementierungen zu gewährleisten, indem starke Kopplung vermieden wird.
                 </li>
             </ul>
         </section>
         <section>
+            <h2>ReactiveX</h2>
+            <h2>…hat eine lebendige Entwicklergemeinde</h2>
+            <ul>
+                <li class="fragment">Beispiel Java
+                    <ul>
+                        <li>Mehr als 41'000 Github-Sterne</li>
+                        <li>243 Mitwirkende</li>
+                        <li>Letzter Commit ist 4 Tage her</li>
+                    </ul>
+                </li>
+                <li class="fragment">Beispiel RxJS
+                    <ul>
+                        <li>Mehr als 20'000 Github-Sterne</li>
+                        <li>381 Mitwirkende</li>
+                        <li>Letzter Commit ist 24 Tage her.</li>
+                    </ul>
+                </li>
+            </ul>
+            <br/><span class="right half-visible">Stand: 20.01.2020</span>
+        </section>
+        <section data-transition="convex">
             <h2>Das Observer-Muster perfektioniert</h2>
             <p>ReactiveX versucht die besten Ideen von Observer-Muster, Iterator-Muster und funktionaler Programmierung zu kombinieren.</p>
             <div id="animatedDiagram1" class="diagram">
@@ -171,24 +221,150 @@
         </section>
         <section>
             <h2>Das Observer-Muster perfektioniert</h2>
-            <p>ReactiveX versucht die besten Ideen von Observer-Muster, Iterator-Muster und funktionaler Programmierung zu kombinieren.</p>
             <ul>Funktionsweise
-                <li class="fragment"><span class="header">Erstellen</span><br/>Simple Erstellung von Ereignis- oder Datenströmen (streams).</li>
-                <li class="fragment"><span class="header">Kombinieren</span><br/>Zusammenstellen und transformieren mit mächtigen Operatoren.</li>
-                <li class="fragment"><span class="header">Auswerten</span><br/>«Observable streams» abonnieren, um Seiteneffekte zu erzeugen.</li>
+                <li class="fragment"><span class="header">Erstellen</span><br/>Simple Erstellung von Ereignis- oder Datenströmen (streams).
+                </li>
+                <li class="fragment"><span class="header">Kombinieren</span><br/>Zusammenstellen und transformieren mit mächtigen
+                    Operatoren.
+                </li>
+                <li class="fragment"><span class="header">Auswerten</span><br/>«Observable streams» abonnieren, um Seiteneffekte zu
+                    erzeugen.
+                </li>
             </ul>
         </section>
         <section>
             <h2>Bessere Codebasis in Bezug auf…</h2>
             <ul>
-                <li class="fragment"><span class="header">Funktionale Entwicklung</span><br/>Komplizierte statusbehaftete Programme vermeiden und stattdessen
+                <li class="fragment"><span class="header">Funktionale Entwicklung</span><br/>Komplizierte statusbehaftete Programme
+                    vermeiden und stattdessen
                     mit «observable streams» arbeiten.
                 </li>
                 <li class="fragment"><span class="header">Effizienz</span><br/>Kompakte Transformationen mit mächtigen Operatoren</li>
-                <li class="fragment"><span class="header">Fehlerbehandlung</span><br/>Einfache Fehlerbehandlung auch im asynchronen Kontext.</li>
-                <li class="fragment"><span class="header">Nebenläufigkeit</span><br/>«Observables» und «Schedulers» vereinfachen den Umgang mit
+                <li class="fragment"><span class="header">Fehlerbehandlung</span><br/>Einfache Fehlerbehandlung auch im asynchronen Kontext.
+                </li>
+                <li class="fragment"><span class="header">Nebenläufigkeit</span><br/>«Observables» und «Schedulers» vereinfachen den Umgang
+                    mit
                     Nebenläufigkeit durch Abstraktion von
                     Threading und Synchronisation.
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h2>Pluspunkte der Implementierungen an sich</h2>
+            <ul>
+                <li>Überschaubare Codebasis</li>
+                <li>Wenig bis keine Abhängigkeiten</li>
+                <li>Performant</li>
+            </ul>
+        </section>
+        <section data-transition="convex-in slide-out">
+            <h1>Observables</h1>
+            <h2>Was kann man sich darunter vorstellen?</h2>
+            <ul>Man kann sich das <span class="hljs-symbol">Observable</span> als die <span class="hljs-addition">push-basierte</span>,
+                <span class="hljs-addition">asynchrone</span> Mutation des pull-basierten und synchronen <span
+                        class="hljs-symbol">Iterable</span> vorstellen.
+            </ul>
+        </section>
+        <section data-transition="slide">
+            <h1>Observables</h1>
+            <h2>Was kann man sich darunter vorstellen?</h2>
+            <p>Der <span class="hljs-symbol">Vertrag</span> mit einem Observable besagt, dass <span class="hljs-addition">null bis n (Daten)-ereignisse eintreten</span>
+                können, letztendlich <span class="hljs-symbol">gefolgt von einem
+                Ereignis, welches den Stream vervollständigt und <em>abschliesst</em>.</span></p>
+            <p class="fragment">Ausserdem kann jederzeit ein <span class="hljs-symbol">Fehlerereignis</span> eintreten, das den Stream
+                ebenfalls
+                vervollständigt.</p>
+            <table class="fragment">
+                <tr>
+                    <th>Ereignis (event)</th>
+                    <th>Iterable (pull)</th>
+                    <th>Observable (push)</th>
+                </tr>
+                <tr>
+                    <td>Daten abrufen</td>
+                    <td>T next()</td>
+                    <td>onNext(T)</td>
+                </tr>
+                <tr>
+                    <td>Fehler entdecken</td>
+                    <td>Throws Exception</td>
+                    <td>onError(Exception)</td>
+                </tr>
+                <tr>
+                    <td>Vervollständigen</td>
+                    <td>returns</td>
+                    <td>onCompleted</td>
+                </tr>
+            </table>
+        </section>
+        <section data-transition="slide-in fade-out" style="height: 18em">
+            <h2>Ein erstes Beispiel…</h2>
+            <h3>Observable erstellen</h3>
+            <pre><code data-trim data-noescape>
+Observable
+    .just(
+        "Hallo lieber Abonnement.",
+        "Dieser Stream liefert Dir so einige Texte.",
+        "Lesen macht Spass!"
+    )
+            </code></pre>
+        </section>
+        <section data-transition="fade" style="height: 18em">
+            <h2>Ein erstes Beispiel…</h2>
+            <h3>Operator(en) hinzufügen</h3>
+            <pre><code data-trim data-noescape>
+Observable
+    .just(
+        "Hallo lieber Abonnement.",
+        "Dieser Stream liefert Dir so einige Texte.",
+        "Lesen macht Spass!"
+    )
+    .zipWith(
+        Observable.range(1, Integer.MAX_VALUE),
+        { text, counter -> "$counter: $text" }
+    )
+            </code></pre>
+        </section>
+        <section data-transition="fade-in" style="height: 18em">
+            <h2>Ein erstes Beispiel…</h2>
+            <h3>Observable subscriben</h3>
+            <pre><code data-trim data-noescape>
+Observable
+    .just(
+        "Hallo lieber Abonnement.",
+        "Dieser Stream liefert Dir so einige Texte.",
+        "Lesen macht Spass!"
+    )
+    .zipWith(
+        Observable.range(1, Integer.MAX_VALUE),
+        { text, counter -> "$counter: $text" }
+    )
+    .subscribe { text -> println(text) }
+            </code></pre>
+            <p>Ausgabe
+            <pre><code data-trim data-noescape>
+1: Hallo lieber Abonnement.
+2: Dieser Stream liefert Dir so einige Texte.
+3: Lesen macht Spass!
+            </code></pre>
+            </p>
+        </section>
+        <section>
+            <h2>Fehlerbehandlung</h2>
+            <p>…</p>
+        </section>
+        <section>
+            <h2>Marbles</h2>
+            <h3>Übersicht über ... Operatoren ...</h3>
+            <p>…</p>
+        </section>
+        <section>
+            <h2>Dokumentation</h2>
+            <ul>
+                <li>Original-Quellen
+                    <ul>
+                        <li>...</li>
+                    </ul>
                 </li>
             </ul>
         </section>

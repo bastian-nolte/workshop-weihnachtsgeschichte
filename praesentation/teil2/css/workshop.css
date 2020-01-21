@@ -28,8 +28,23 @@ div.reveal p {
     text-align: left;
 }
 
+div.reveal blockquote {
+    border-radius: 5px;
+    padding: 0 1em;
+}
+
+div.reveal blockquote > span.source {
+    text-align: right;
+    display: block;
+    font-size: 0.8em;
+}
+
 div.half-size {
     font-size: 0.5em;
+}
+
+.half-visible {
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .right {
@@ -77,9 +92,27 @@ div.reveal li:before {
     background-image: url("../assets/santa-icon.png");
 }
 
-div.reveal li li {
+div.reveal li > ul > li {
     font-size: 0.7em;
-    margin-bottom: 0.5em;
+    padding-top: 0.25em;
+    margin: 0;
+}
+
+div.reveal table {
+    margin-top: 1em;
+    border-radius: 0.4em;
+    border: 1px solid gainsboro;
+    border-collapse: separate;
+    overflow: hidden;
+}
+
+div.reveal table th, td {
+    background-color: rgba(41, 88, 151, 0.5);
+    border-right: 1px solid;
+}
+
+div.reveal table th:last-child, td:last-child {
+    background-color: rgba(41, 88, 151, 0.8);
 }
 
 span.header {
@@ -143,7 +176,7 @@ a.reference {
 }
 
 .text-gradient1 {
-    background-image:linear-gradient(90deg,blue,yellow,red,purple);
+    background-image: linear-gradient(90deg, blue, yellow, red, purple);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
