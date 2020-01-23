@@ -88,6 +88,14 @@
             padding: 0em 0.2em;
         }
 
+        sup.eh {
+            color: rgba(255,255,255,0.6);
+        }
+
+        sup.eh::after {
+            content: " EH";
+        }
+
         .tiny {
             font-size: 0.5em;
         }
@@ -155,7 +163,7 @@
             <h2>Was wir erreichen wollen<br/>in einem Satz</h2>
             <div class="fragment" style="text-align: center; margin-top: 2em;">
                 <p style="text-align: center;">Ziel des Kurses ist es die Teilnehmer zu befähigen,<br/>
-                    eine Anwendung <span class="hljs-code">[Fullstack]</span> über alle Schichten hinweg zu planen und zu entwickeln<br/>
+                    eine Anwendung <span class="hljs-code">[Fullstack]</span> über alle Schichten hinweg zu planen, zu entwickeln<br/>
                     und diese dann in der Kubernetes-Cloud zu betreiben<br/><span class="hljs-code">[DevOPs] / [AWL 2.0]</span>.</p>
             </div>
             <div class="fragment">
@@ -178,8 +186,8 @@
                             <li style="margin: 0">Kotlin</li>
                             <li style="margin: 0">Observable Streams und ReactiveX (funktionale Programmierung)</li>
                             <li style="margin: 0">Domain Driven Design in der Praxis</li>
-                            <li style="margin: 0">AWL 2.0 >> Kubernetes (Vorbereitung, Deployment, usw.)</li>
-                            <li style="margin: 0">WebSockets oder Server Sent Events</li>
+                            <li style="margin: 0">AWL 2.0 >> Kubernetes (Vorbereitung, Deployment, Betrieb)</li>
+                            <li style="margin: 0">Angular mit WebSockets oder Server Sent Events</li>
                         </ul>
                     </li>
                 </ul>
@@ -189,28 +197,32 @@
             <div style="background-color: rgba(50,50,50,0.6); border-radius: 0.3em;">
                 <h1 style="font-size: 1.1em">Was erwartet Euch in dieser Workshop&#8209;Serie?</h1>
                 <ul>
-                    <li class="fragment fade-in-then-semi-out">Wir giessen gemeinsam eine Weihnachtsgeschichte in Code</li>
-                    <li class="fragment fade-in-then-semi-out">Folgende Workshopblöcke sind geplant…
+                    <li class="">Wir giessen gemeinsam eine Weihnachtsgeschichte in Code</li>
+                    <li class="">Folgende Workshopblöcke sind geplant…
                         <ul>
                             <li>
                                 <tag>WS1</tag>
-                                Die Grundlagen der Programmiersprache «Kotlin»
+                                Die Grundlagen der Programmiersprache «Kotlin» <sup class="eh">2</sup>
                             </li>
                             <li>
                                 <tag>WS2</tag>
-                                Grundlagen der asynchronen und funktionalen Programmierung mit «observable&nbsp;streams» und ReactiveX
+                                Grundlagen der asynchronen und funktionalen Programmierung mit «observable&nbsp;streams» und ReactiveX <sup class="eh">2</sup>
                             </li>
                             <li>
                                 <tag>WS3</tag>
-                                Hochperformante Microservices mit Quarkus und GraalVM
+                                Hochperformante Microservices mit Quarkus und GraalVM <sup class="eh">2</sup>
                             </li>
                             <li>
                                 <tag>WS4</tag>
-                                Vorbereitung für die AWL 2.0 und Deployment in die Kubernetes Cloud
+                                Betrachtung aus Sicht «DDD» <sup class="eh">1</sup>
                             </li>
                             <li>
                                 <tag>WS5</tag>
-                                Echtzeitdarstellung in Angular mit WebSockets oder Server&#8209;Sent&nbspEvents
+                                Vorbereitung für die AWL 2.0 und Deployment in die Kubernetes Cloud <sup class="eh">3-5</sup>
+                            </li>
+                            <li>
+                                <tag>WS6</tag>
+                                Echtzeitdarstellung in Angular mit WebSockets oder Server&#8209;Sent&nbspEvents <sup class="eh">3-5</sup>
                             </li>
                         </ul>
                     </li>
@@ -225,6 +237,7 @@
                 </p>
             </div>
         </section>
+
         <section data-background-image="data-src/Methodik-1-1-Lesson.svg" data-background-size="contain"></section>
         <section data-background-image="data-src/Methodik-1-2-Storytelling.svg" data-background-size="contain"></section>
         <section data-background-image="data-src/Methodik-1-3-MobPRogramming.svg" data-background-size="contain"></section>

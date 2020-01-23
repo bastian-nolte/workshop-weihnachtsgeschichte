@@ -1,5 +1,5 @@
 body > div.reveal {
-    font-size: 27px;
+    font-size: 26px;
 }
 
 div.reveal h1 {
@@ -9,6 +9,12 @@ div.reveal h1 {
 div.reveal h2 {
     font-size: 1.8em;
     text-transform: none;
+}
+
+div.reveal hr {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
 }
 
 div.reveal h3 {
@@ -75,11 +81,10 @@ div.reveal ul {
 
 div.reveal li {
     font-size: 0.65em;
-
     padding-top: 0.5em;
     list-style: none;
     padding-left: 1.5em;
-    text-indent: -1.5em;
+    text-indent: -1.7em;
 }
 
 div.reveal li:before {
@@ -179,4 +184,17 @@ a.reference {
     background-image: linear-gradient(90deg, blue, yellow, red, purple);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+sup.eh {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+sup.eh::after {
+    content: " EH";
+}
+
+code  {
+    font-size: 1.6em;
+    line-height: 1.1em;
 }

@@ -27,6 +27,37 @@
 <body>
 <div class="reveal">
     <div class="slides">
+
+
+      <!--  <section data-transition="slide">
+            <h2>Fehlerbehandlung</h2>
+            <h3>onExceptionResumeNext{…}</h3>
+            <pre><code data-trim data-noescape class="line-numbers">
+Fahrzeug(Fahrer("Oma Annelore"))
+  .beschleunigeAuf(Geschwindigkeit(85), Land("Schweiz"))
+  .subscribeBy(
+    onNext = {
+      println(it)
+      if (it.höherAls(Geschwindigkeit(45))) {
+        throw IllegalStateException("Oma mag diese hohe Geschwindigkeit nicht!")
+      }
+    },
+    onError = {
+      println("Beschleunigung abgelehnt. $it")
+    }
+  )
+ </code></pre>
+            <div class="fragment">
+                <h3>Ausgabe</h3>
+                <pre><code data-trim data-noescape class="line-numbers" >
+Geschwindigkeit(kmh=0)
+Geschwindigkeit(kmh=50)
+Beschleunigung abgelehnt. java.lang.IllegalStateException: Oma mag diese hohe Geschwindigkeit nicht!
+                </code>
+                    </pre>
+            </div>
+        </section>-->
+
         <section data-transition="convex">
             <h1>Kotlin - ReactiveX - Kubernetes</h1>
             <h2>Eine Weihnachtsgeschichte</h2>
@@ -42,12 +73,48 @@
             <h2>Was wir erreichen wollen<br/>in einem Satz</h2>
             <div class="fragment" style="text-align: center; margin-top: 2em;">
                 <p style="text-align: center;">Ziel des Kurses ist es die Teilnehmer zu befähigen,<br/>
-                    eine Anwendung <span class="hljs-code">[Fullstack]</span> über alle Schichten hinweg zu planen und zu entwickeln<br/>
+                    eine Anwendung <span class="hljs-code">[Fullstack]</span> über alle Schichten hinweg zu planen, zu entwickeln<br/>
                     und diese dann in der Kubernetes-Cloud zu betreiben<br/><span class="hljs-code">[DevOPs] / [AWL 2.0]</span>.</p>
             </div>
             <div class="fragment">
                 <p style="text-align: center">«Enabling Fullstack Development in der AWL 2.0»</p>
             </div>
+        </section>
+        <section>
+            <h2>Was erwartet Euch in dieser Workshop&#8209;Serie?</h2>
+            <hr/>
+            <ul>
+                <li>Wir giessen gemeinsam eine Weihnachtsgeschichte in Code</li>
+                <li>Folgende Workshopblöcke sind geplant…
+                    <ul>
+                        <li>
+                            <tag>WS1</tag>
+                            Die Grundlagen der Programmiersprache «Kotlin» <sup class="eh">2</sup>
+                        </li>
+                        <li>
+                            <tag>WS2</tag>
+                            Grundlagen der asynchronen und funktionalen Programmierung mit «observable&nbsp;streams» und ReactiveX <sup
+                                class="eh">2</sup>
+                        </li>
+                        <li>
+                            <tag>WS3</tag>
+                            Hochperformante Microservices <br/>mit Quarkus und GraalVM <sup class="eh">2</sup>
+                        </li>
+                        <li>
+                            <tag>WS4</tag>
+                            Betrachtung aus Sicht «DDD» <sup class="eh">1</sup>
+                        </li>
+                        <li>
+                            <tag>WS5</tag>
+                            Vorbereitung für die AWL 2.0 und Deployment in die Kubernetes Cloud <sup class="eh">3-5</sup>
+                        </li>
+                        <li>
+                            <tag>WS6</tag>
+                            Echtzeitdarstellung in Angular mit WebSockets oder Server&#8209;Sent&nbspEvents <sup class="eh">3-5</sup>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </section>
         <section data-transition="convex">
             <h2>ReactiveX</h2>
@@ -349,6 +416,122 @@ Observable
             </code></pre>
             </p>
         </section>
+        <section data-transition="slide">
+            <h2>Fehlerbehandlung</h2>
+            <h3>onError {…}</h3>
+            <pre><code data-trim data-noescape class="line-numbers">
+Observable
+  .error&lt;IllegalArgumentException&gt; {
+    IllegalArgumentException("So aber nicht! Tztztz!")
+  }
+  .subscribeBy(
+    onNext = { `drucke in Farbe`(Farbe.GELB, "Es wurde etwas emmitiert! 😎") },
+    onError = { `drucke in Farbe`(Farbe.ROT, "Es ist ein Fehler aufgetreten 😱 \n\t $it")}
+  )
+</code></pre>
+            <div class="fragment">
+                <p>Ausgabe
+                <pre><code data-trim data-noescape style="color: red">
+Es ist ein Fehler aufgetreten 😱
+    java.lang.IllegalArgumentException: So aber nicht! Tztztz!
+            </code></pre>
+                </p>
+            </div>
+        </section>
+        <section data-transition="slide">
+            <h2>Ausnahme erzeugen mit</h2>
+            <h3>Observable.error</h3>
+            <pre><code data-trim data-noescape class="line-numbers" style="max-height: none">
+class Fahrzeug(val fahrer: Fahrer) {
+  fun beschleunigeAuf(
+      zielgeschwindigkeit: Geschwindigkeit,
+      aufenthalt: Land): Observable&lt;Geschwindigkeit&gt; {
+
+    if (aufenthalt == Land("Schweiz")
+        && zielgeschwindigkeit.höherAls(Geschwindigkeit(135))
+       ) {
+        return Observable.error&lt;Geschwindigkeit&gt; {
+            IllegalArgumentException("Zielgeschwindigkeit zu hoch.")
+        }
+    }
+
+    return Observable
+        .fromIterable(0..endgeschwindigkeit.kmh)
+        .filter { it % 50 == 0 || it == endgeschwindigkeit.kmh }
+        .map { Geschwindigkeit(it) }
+  }
+}
+</code></pre>
+        </section>
+        <section data-transition="slide">
+            <h2>Aufrufbeispiel 1</h2>
+            <pre><code data-trim data-noescape class="line-numbers">
+Fahrzeug(Fahrer("Benno"))
+  .beschleunigeAuf(Geschwindigkeit(173), Land("Grosskanton"))
+  .subscribeBy(
+    onNext = { println(it) },
+    onError = { println("Beschleunigung abgelehnt. $it") }
+  )
+            </code></pre>
+            <div class="fragment">
+                <h3>Ausgabe</h3>
+                <pre><code data-trim data-noescape class="line-numbers" >
+Geschwindigkeit(kmh=0)
+Geschwindigkeit(kmh=50)
+Geschwindigkeit(kmh=100)
+Geschwindigkeit(kmh=150)
+Geschwindigkeit(kmh=173)
+                </code>
+                    </pre>
+            </div>
+        </section>
+        <section data-transition="slide">
+            <h2>Aufrufbeispiel 2</h2>
+            <pre><code data-trim data-noescape class="line-numbers">
+Fahrzeug(Fahrer("Krunoslav"))
+  .beschleunigeAuf(Geschwindigkeit(173), Land("Schweiz"))
+  .subscribeBy(
+    onNext = { println(it) },
+    onError = { println("Beschleunigung abgelehnt. $it") }
+  )
+            </code></pre>
+            <div class="fragment">
+                <h3>Ausgabe</h3>
+                <pre><code data-trim data-noescape class="line-numbers" >
+Beschleunigung abgelehnt. java.lang.IllegalArgumentException: Zielgeschwindigkeit zu hoch.
+                </code>
+                    </pre>
+            </div>
+        </section>
+        <section data-transition="slide">
+            <h2>Aufrufbeispiel 3</h2>
+            <pre><code data-trim data-noescape class="line-numbers">
+Fahrzeug(Fahrer("Oma Annelore"))
+  .beschleunigeAuf(Geschwindigkeit(85), Land("Schweiz"))
+  .subscribeBy(
+    onNext = {
+      println(it)
+      if (it.höherAls(Geschwindigkeit(45))) {
+        throw IllegalStateException("Oma mag diese hohe Geschwindigkeit nicht!")
+      }
+    },
+    onError = {
+      println("Beschleunigung abgelehnt. $it")
+    }
+  )
+ </code></pre>
+            <div class="fragment">
+                <h3>Ausgabe</h3>
+                <pre><code data-trim data-noescape class="line-numbers" >
+Geschwindigkeit(kmh=0)
+Geschwindigkeit(kmh=50)
+Beschleunigung abgelehnt.
+  java.lang.IllegalStateException: Oma mag diese hohe Geschwindigkeit nicht!
+                </code>
+                    </pre>
+            </div>
+        </section>
+
         <section>
             <h2>Fehlerbehandlung</h2>
             <p>…</p>
@@ -378,11 +561,13 @@ Observable
     // - https://github.com/hakimel/reveal.js#configuration
     // - https://github.com/hakimel/reveal.js#dependencies
     Reveal.initialize({
+        width: '100%',
         dependencies: [
             {src: 'plugin/markdown/marked.js'},
             {src: 'plugin/markdown/markdown.js'},
             {src: 'plugin/notes/notes.js', async: true},
-            {src: 'plugin/highlight/highlight.js', async: true}
+            {src: 'plugin/highlight/highlight.js', async: true},
+            {src: 'plugin/line-numbers/line-numbers.js'}
         ]
     });
 </script>
