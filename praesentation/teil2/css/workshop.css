@@ -120,6 +120,26 @@ div.reveal table th:last-child, td:last-child {
     background-color: rgba(41, 88, 151, 0.8);
 }
 
+div.reveal table.data-table thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
+
+div.reveal table.data-table tbody {
+    display: block;
+    height: calc(100vh - 265px)!important;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+div.reveal table.data-table tr, td {
+    font-size: 0.9em;
+}
+div.reveal table.data-table tr, td code {
+    font-size: 1em;
+}
+
 span.header {
     font-size: 1.2em;
     text-decoration: underline;

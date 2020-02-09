@@ -28,36 +28,6 @@
 <div class="reveal">
     <div class="slides">
 
-
-      <!--  <section data-transition="slide">
-            <h2>Fehlerbehandlung</h2>
-            <h3>onExceptionResumeNext{…}</h3>
-            <pre><code data-trim data-noescape class="line-numbers">
-Fahrzeug(Fahrer("Oma Annelore"))
-  .beschleunigeAuf(Geschwindigkeit(85), Land("Schweiz"))
-  .subscribeBy(
-    onNext = {
-      println(it)
-      if (it.höherAls(Geschwindigkeit(45))) {
-        throw IllegalStateException("Oma mag diese hohe Geschwindigkeit nicht!")
-      }
-    },
-    onError = {
-      println("Beschleunigung abgelehnt. $it")
-    }
-  )
- </code></pre>
-            <div class="fragment">
-                <h3>Ausgabe</h3>
-                <pre><code data-trim data-noescape class="line-numbers" >
-Geschwindigkeit(kmh=0)
-Geschwindigkeit(kmh=50)
-Beschleunigung abgelehnt. java.lang.IllegalStateException: Oma mag diese hohe Geschwindigkeit nicht!
-                </code>
-                    </pre>
-            </div>
-        </section>-->
-
         <section data-transition="convex">
             <h1>Kotlin - ReactiveX - Kubernetes</h1>
             <h2>Eine Weihnachtsgeschichte</h2>
@@ -122,10 +92,9 @@ Beschleunigung abgelehnt. java.lang.IllegalStateException: Oma mag diese hohe Ge
                 <p>…ist eine Bibliothek zur Erstellung von asynchronen und ereignisbasierten Programmen unter Verwendung beobachtbarer
                     Sequenzen.</p>
                 <p>Sie erweitert das Beobachtungsmuster zur Unterstützung von Daten- und/oder Ereignissequenzen und fügt Operatoren hinzu,
-                    die
-                    es Ihnen ermöglichen, Sequenzen deklarativ zusammenzusetzen und gleichzeitig Bedenken über Dinge wie
-                    Low-Level-Threading,
-                    Synchronisierung, Thread-Sicherheit, gleichzeitige Datenstrukturen und nicht-blockierende E/As auszuräumen.</p>
+                    die es ermöglichen, Sequenzen deklarativ zusammenzusetzen und gleichzeitig Bedenken bezüglich Dingen wie
+                    Low-Level-Threading, Synchronisierung, Thread-Sicherheit, gleichzeitige Datenstrukturen und nicht-blockierender E/As
+                    auszuräumen.</p>
                 <span class="source">Zitat von <a href="http://reactivex.io/intro.html">http://reactivex.io/intro.html</a></span>
             </blockquote>
             <p class="fragment">Ok. Na dann ist ja alles klar! 🧐</p>
@@ -226,6 +195,10 @@ Beschleunigung abgelehnt. java.lang.IllegalStateException: Oma mag diese hohe Ge
             </ul>
             <br/><span class="right half-visible">Stand: 20.01.2020</span>
         </section>
+        <section style="height: 100%; padding-top: 0">
+            <h2 style="padding-top: 0">Kritische Betrachtung der Aussagen</h2>
+            <a href="https://github.com/ReactiveX/rxjs/graphs/contributors" target="_blank"><img src="assets/github-sc-rxjs.png"></a>
+        </section>
         <section data-transition="convex">
             <h2>Das Observer-Muster perfektioniert</h2>
             <p>ReactiveX versucht die besten Ideen von Observer-Muster, Iterator-Muster und funktionaler Programmierung zu kombinieren.</p>
@@ -324,6 +297,15 @@ Beschleunigung abgelehnt. java.lang.IllegalStateException: Oma mag diese hohe Ge
                 <li>Performant</li>
             </ul>
         </section>
+        <section>
+            <h2>Cons</h2>
+            <ul>
+                <li>Aufbau und Funktionsweise muss verstanden werden…</li>
+                <li>ansonsten drohen unerwartete Effekte</li>
+                <li>Es gibt eine Menge Operatoren (PRO/CONTRA)</li>
+                <li>In Kotlin reichen ggf. auch Coroutines / Flow</li>
+            </ul>
+        </section>
         <section data-transition="convex-in slide-out">
             <h1>Observables</h1>
             <h2>Was kann man sich darunter vorstellen?</h2>
@@ -376,6 +358,412 @@ Observable
     )
             </code></pre>
         </section>
+        <section style="height: 100%; padding-top: 0">
+            <h2 style="padding-top: 0">Dokumentation: Creating Observables</h2>
+            <a href="https://github.com/ReactiveX/RxJava/wiki/Creating-Observables" target="_blank"><img
+                    src="assets/github-sc-rxjava-wiki-Creating%20Observables.png"></a>
+        </section>
+        <section>
+            <h2>Kotlin Extensions
+                <a style="font-size: 0.5em;" href="https://github.com/ReactiveX/RxKotlin#extensions">https://github.com/ReactiveX/RxKotlin#extensions</a>
+            </h2>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Target Type</th>
+                    <th>Method</th>
+                    <th>Return Type</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>BooleanArray</td>
+                    <td>toObservable()</td>
+                    <td>Observable</td>
+                    <td>Turns a Boolean array into an Observable</td>
+                </tr>
+                <tr>
+                    <td>ByteArray</td>
+                    <td>toObservable()</td>
+                    <td>Observable</td>
+                    <td>Turns a Byte array into an Observable</td>
+                </tr>
+                <tr>
+                    <td>ShortArray</td>
+                    <td>toObservable()</td>
+                    <td>Observable</td>
+                    <td>Turns a Short array into an Observable</td>
+                </tr>
+                <tr>
+                    <td>IntArray</td>
+                    <td>toObservable()</td>
+                    <td>Observable</td>
+                    <td>Turns an Int array into an Observable</td>
+                </tr>
+                <tr>
+                    <td>LongArray</td>
+                    <td>toObservable()</td>
+                    <td>Observable</td>
+                    <td>Turns a Long array into an Observable</td>
+                </tr>
+                <tr>
+                    <td>FloatArray</td>
+                    <td>toObservable()</td>
+                    <td>Observable</td>
+                    <td>Turns a Float array into an Observable</td>
+                </tr>
+                <tr>
+                    <td>DoubleArray</td>
+                    <td>toObservable()</td>
+                    <td>Observable</td>
+                    <td>Turns a Double array into an Observable</td>
+                </tr>
+                <tr>
+                    <td>Array</td>
+                    <td>toObservable()</td>
+                    <td>Observable</td>
+                    <td>Turns a <code>T</code> array into an Observable</td>
+                </tr>
+                <tr>
+                    <td>IntProgression</td>
+                    <td>toObservable()</td>
+                    <td>Observable</td>
+                    <td>Turns an <code>IntProgression</code> into an Observable</td>
+                </tr>
+                <tr>
+                    <td>Iterable</td>
+                    <td>toObservable()</td>
+                    <td>Observable</td>
+                    <td>Turns an <code>Iterable&lt;T&gt;</code> into an Observable</td>
+                </tr>
+                <tr>
+                    <td>Iterator</td>
+                    <td>toObservable()</td>
+                    <td>Observable</td>
+                    <td>Turns an <code>Iterator&lt;T&gt;</code> into an Observable</td>
+                </tr>
+                <tr>
+                    <td>Observable</td>
+                    <td>flatMapSequence()</td>
+                    <td>Observable</td>
+                    <td>Flat maps each <code>T</code> emission to a <code>Sequence&lt;R&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Observable&lt;Pair&lt;A,B&gt;&gt;</td>
+                    <td>toMap()</td>
+                    <td>Single&lt;Map&lt;A,B&gt;&gt;</td>
+                    <td>Collects <code>Pair&lt;A,B&gt;</code> emissions into a <code>Map&lt;A,B&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Observable&lt;Pair&lt;A,B&gt;&gt;</td>
+                    <td>toMultimap()</td>
+                    <td><code>Single&lt;Map&lt;A, List&lt;B&gt;&gt;</code></td>
+                    <td>Collects <code>Pair&lt;A,B&gt;</code> emissions into a <code>Map&lt;A,List&lt;B&gt;&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Observable&lt;Observable&gt;</td>
+                    <td>mergeAll()</td>
+                    <td>Observable</td>
+                    <td>Merges all Observables emitted from an Observable</td>
+                </tr>
+                <tr>
+                    <td>Observable&lt;Observable&gt;</td>
+                    <td>concatAll()</td>
+                    <td>Observable</td>
+                    <td>Concatenates all Observables emitted from an Observable</td>
+                </tr>
+                <tr>
+                    <td>Observable&lt;Observable&gt;</td>
+                    <td>switchLatest()</td>
+                    <td>Observable</td>
+                    <td>Emits from the last emitted Observable</td>
+                </tr>
+                <tr>
+                    <td>Observable&lt;*&gt;</td>
+                    <td>cast()</td>
+                    <td>Observable</td>
+                    <td>Casts all emissions to the reified type</td>
+                </tr>
+                <tr>
+                    <td>Observable&lt;*&gt;</td>
+                    <td>ofType()</td>
+                    <td>Observable</td>
+                    <td>Filters all emissions to only the reified type</td>
+                </tr>
+                <tr>
+                    <td>Iterable&lt;Observable&gt;</td>
+                    <td>merge()</td>
+                    <td>Observable</td>
+                    <td>Merges an Iterable of Observables into a single Observable</td>
+                </tr>
+                <tr>
+                    <td>Iterable&lt;Observable&gt;</td>
+                    <td>mergeDelayError()</td>
+                    <td>Observable</td>
+                    <td>Merges an Iterable of Observables into a single Observable, but delays any error</td>
+                </tr>
+                <tr>
+                    <td>BooleanArray</td>
+                    <td>toFlowable()</td>
+                    <td>Flowable</td>
+                    <td>Turns a Boolean array into an Flowable</td>
+                </tr>
+                <tr>
+                    <td>ByteArray</td>
+                    <td>toFlowable()</td>
+                    <td>Flowable</td>
+                    <td>Turns a Byte array into an Flowable</td>
+                </tr>
+                <tr>
+                    <td>ShortArray</td>
+                    <td>toFlowable()</td>
+                    <td>Flowable</td>
+                    <td>Turns a Short array into an Flowable</td>
+                </tr>
+                <tr>
+                    <td>IntArray</td>
+                    <td>toFlowable()</td>
+                    <td>Flowable</td>
+                    <td>Turns an Int array into an Flowable</td>
+                </tr>
+                <tr>
+                    <td>LongArray</td>
+                    <td>toFlowable()</td>
+                    <td>Flowable</td>
+                    <td>Turns a Long array into an Flowable</td>
+                </tr>
+                <tr>
+                    <td>FloatArray</td>
+                    <td>toFlowable()</td>
+                    <td>Flowable</td>
+                    <td>Turns a Float array into an Flowable</td>
+                </tr>
+                <tr>
+                    <td>DoubleArray</td>
+                    <td>toFlowable()</td>
+                    <td>Flowable</td>
+                    <td>Turns a Double array into an Flowable</td>
+                </tr>
+                <tr>
+                    <td>Array</td>
+                    <td>toFlowable()</td>
+                    <td>Flowable</td>
+                    <td>Turns a <code>T</code> array into an Flowable</td>
+                </tr>
+                <tr>
+                    <td>IntProgression</td>
+                    <td>toFlowable()</td>
+                    <td>Flowable</td>
+                    <td>Turns an <code>IntProgression</code> into an Flowable</td>
+                </tr>
+                <tr>
+                    <td>Iterable</td>
+                    <td>toFlowable()</td>
+                    <td>Flowable</td>
+                    <td>Turns an <code>Iterable&lt;T&gt;</code> into an Flowable</td>
+                </tr>
+                <tr>
+                    <td>Iterator</td>
+                    <td>toFlowable()</td>
+                    <td>Flowable</td>
+                    <td>Turns an <code>Iterator&lt;T&gt;</code> into an Flowable</td>
+                </tr>
+                <tr>
+                    <td>Flowable</td>
+                    <td>flatMapSequence()</td>
+                    <td>Flowable</td>
+                    <td>Flat maps each <code>T</code> emission to a <code>Sequence&lt;R&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Flowable&lt;Pair&lt;A,B&gt;&gt;</td>
+                    <td>toMap()</td>
+                    <td>Single&lt;Map&lt;A,B&gt;&gt;</td>
+                    <td>Collects <code>Pair&lt;A,B&gt;</code> emissions into a <code>Map&lt;A,B&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Flowable&lt;Pair&lt;A,B&gt;&gt;</td>
+                    <td>toMultimap()</td>
+                    <td><code>Single&lt;Map&lt;A, List&lt;B&gt;&gt;&gt;</code></td>
+                    <td>Collects <code>Pair&lt;A,B&gt;</code> emissions into a <code>Map&lt;A,List&lt;B&gt;&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>Flowable&lt;Flowable&gt;</td>
+                    <td>mergeAll()</td>
+                    <td>Flowable</td>
+                    <td>Merges all Flowables emitted from an Flowable</td>
+                </tr>
+                <tr>
+                    <td>Flowable&lt;Flowable&gt;</td>
+                    <td>concatAll()</td>
+                    <td>Flowable</td>
+                    <td>Concatenates all Flowables emitted from an Flowable</td>
+                </tr>
+                <tr>
+                    <td>Flowable&lt;Flowable&gt;</td>
+                    <td>switchLatest()</td>
+                    <td>Flowable</td>
+                    <td>Emits from the last emitted Flowable</td>
+                </tr>
+                <tr>
+                    <td>Flowable</td>
+                    <td>cast()</td>
+                    <td>Flowable</td>
+                    <td>Casts all emissions to the reified type</td>
+                </tr>
+                <tr>
+                    <td>Flowable</td>
+                    <td>ofType()</td>
+                    <td>Flowable</td>
+                    <td>Filters all emissions to only the reified type</td>
+                </tr>
+                <tr>
+                    <td>Iterable&lt;Flowable&gt;</td>
+                    <td>merge()</td>
+                    <td>Flowable</td>
+                    <td>Merges an Iterable of Flowables into a single Flowable</td>
+                </tr>
+                <tr>
+                    <td>Iterable&lt;Flowable&gt;</td>
+                    <td>mergeDelayError()</td>
+                    <td>Flowable</td>
+                    <td>Merges an Iterable of Flowables into a single Flowable, but delays any error</td>
+                </tr>
+                <tr>
+                    <td>Single</td>
+                    <td>cast()</td>
+                    <td>Single</td>
+                    <td>Casts all emissions to the reified type</td>
+                </tr>
+                <tr>
+                    <td>Observable&lt;Single&gt;</td>
+                    <td>mergeAllSingles()</td>
+                    <td>Observable</td>
+                    <td>Merges all Singles emitted from an Observable</td>
+                </tr>
+                <tr>
+                    <td>Flowable&lt;Single&gt;</td>
+                    <td>mergeAllSingles()</td>
+                    <td>Flowable</td>
+                    <td>Merges all Singles emitted from a Flowable</td>
+                </tr>
+                <tr>
+                    <td>Maybe</td>
+                    <td>cast()</td>
+                    <td>Maybe</td>
+                    <td>Casts any emissions to the reified type</td>
+                </tr>
+                <tr>
+                    <td>Maybe</td>
+                    <td>ofType()</td>
+                    <td>Maybe</td>
+                    <td>Filters any emission that is the reified type</td>
+                </tr>
+                <tr>
+                    <td>Observable&lt;Maybe&gt;</td>
+                    <td>mergeAllMaybes()</td>
+                    <td>Observable</td>
+                    <td>Merges all emitted Maybes</td>
+                </tr>
+                <tr>
+                    <td>Flowable&lt;Maybe&gt;</td>
+                    <td>mergeAllMaybes()</td>
+                    <td>Flowable</td>
+                    <td>Merges all emitted Maybes</td>
+                </tr>
+                <tr>
+                    <td>Action</td>
+                    <td>toCompletable()</td>
+                    <td>Completable</td>
+                    <td>Turns an <code>Action</code> into a <code>Completable</code></td>
+                </tr>
+                <tr>
+                    <td>Callable</td>
+                    <td>toCompletable()</td>
+                    <td>Completable</td>
+                    <td>Turns a <code>Callable</code> into a <code>Completable</code></td>
+                </tr>
+                <tr>
+                    <td>Future</td>
+                    <td>toCompletable()</td>
+                    <td>Completable</td>
+                    <td>Turns a <code>Future</code> into a <code>Completable</code></td>
+                </tr>
+                <tr>
+                    <td>(() -&gt; Any)</td>
+                    <td>toCompletable()</td>
+                    <td>Completable</td>
+                    <td>Turns a <code>(() -&gt; Any)</code> into a <code>Completable</code></td>
+                </tr>
+                <tr>
+                    <td>Observable</td>
+                    <td>mergeAllCompletables()</td>
+                    <td>Completable&gt;</td>
+                    <td>Merges all emitted Completables</td>
+                </tr>
+                <tr>
+                    <td>Flowable</td>
+                    <td>mergeAllCompletables()</td>
+                    <td>Completable</td>
+                    <td>Merges all emitted Completables</td>
+                </tr>
+                <tr>
+                    <td>Observable</td>
+                    <td>subscribeBy()</td>
+                    <td>Disposable</td>
+                    <td>Allows named arguments to construct an Observer</td>
+                </tr>
+                <tr>
+                    <td>Flowable</td>
+                    <td>subscribeBy()</td>
+                    <td>Disposable</td>
+                    <td>Allows named arguments to construct a Subscriber</td>
+                </tr>
+                <tr>
+                    <td>Single</td>
+                    <td>subscribeBy()</td>
+                    <td>Disposable</td>
+                    <td>Allows named arguments to construct a SingleObserver</td>
+                </tr>
+                <tr>
+                    <td>Maybe</td>
+                    <td>subscribeBy()</td>
+                    <td>Disposable</td>
+                    <td>Allows named arguments to construct a MaybeObserver</td>
+                </tr>
+                <tr>
+                    <td>Completable</td>
+                    <td>subscribeBy()</td>
+                    <td>Disposable</td>
+                    <td>Allows named arguments to construct a CompletableObserver</td>
+                </tr>
+                <tr>
+                    <td>Observable</td>
+                    <td>blockingSubscribeBy()</td>
+                    <td>Unit</td>
+                    <td>Allows named arguments to construct a blocking Observer</td>
+                </tr>
+                <tr>
+                    <td>Flowable</td>
+                    <td>blockingSubscribeBy()</td>
+                    <td>Unit</td>
+                    <td>Allows named arguments to construct a blocking Subscriber</td>
+                </tr>
+                <tr>
+                    <td>Disposable</td>
+                    <td>addTo()</td>
+                    <td>Disposable</td>
+                    <td>Adds a <code>Disposable</code> to the specified <code>CompositeDisposable</code></td>
+                </tr>
+                <tr>
+                    <td>CompositeDisposable</td>
+                    <td>plusAssign()</td>
+                    <td>Disposable</td>
+                    <td>Operator function to add a <code>Disposable</code> to this<code>CompositeDisposable</code></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
         <section data-transition="fade" style="height: 18em">
             <h2>Ein erstes Beispiel…</h2>
             <h3>Operator(en) hinzufügen</h3>
@@ -391,6 +779,25 @@ Observable
         { text, counter -> "$counter: $text" }
     )
             </code></pre>
+        </section>
+        <section data-transition="fade-in" style="height: 18em">
+            <h2>Ein erstes Beispiel…</h2>
+            <h3>Observable subscriben</h3>
+            <pre><code data-trim data-noescape>
+Observable
+    .just(
+        "Hallo lieber Abonnement.",
+        "Dieser Stream liefert Dir so einige Texte.",
+        "Lesen macht Spass!"
+    )
+    .zipWith(
+        Observable.range(1, Integer.MAX_VALUE),
+        { text, counter -> "$counter: $text" }
+    )
+    .subscribe { text -> println(text) }
+            </code></pre>
+            <p>Ausgabe
+                ???
         </section>
         <section data-transition="fade-in" style="height: 18em">
             <h2>Ein erstes Beispiel…</h2>
@@ -475,7 +882,7 @@ Fahrzeug(Fahrer("Benno"))
             </code></pre>
             <div class="fragment">
                 <h3>Ausgabe</h3>
-                <pre><code data-trim data-noescape class="line-numbers" >
+                <pre><code data-trim data-noescape class="line-numbers">
 Geschwindigkeit(kmh=0)
 Geschwindigkeit(kmh=50)
 Geschwindigkeit(kmh=100)
@@ -497,7 +904,7 @@ Fahrzeug(Fahrer("Krunoslav"))
             </code></pre>
             <div class="fragment">
                 <h3>Ausgabe</h3>
-                <pre><code data-trim data-noescape class="line-numbers" >
+                <pre><code data-trim data-noescape class="line-numbers">
 Beschleunigung abgelehnt. java.lang.IllegalArgumentException: Zielgeschwindigkeit zu hoch.
                 </code>
                     </pre>
@@ -522,7 +929,7 @@ Fahrzeug(Fahrer("Oma Annelore"))
  </code></pre>
             <div class="fragment">
                 <h3>Ausgabe</h3>
-                <pre><code data-trim data-noescape class="line-numbers" >
+                <pre><code data-trim data-noescape class="line-numbers">
 Geschwindigkeit(kmh=0)
 Geschwindigkeit(kmh=50)
 Beschleunigung abgelehnt.
@@ -531,22 +938,63 @@ Beschleunigung abgelehnt.
                     </pre>
             </div>
         </section>
-
-        <section>
+        <section data-transition="slide">
             <h2>Fehlerbehandlung</h2>
-            <p>…</p>
+            <h3>onExceptionResumeNext{…}</h3>
+            <pre><code data-trim data-noescape class="line-numbers">
+Miner(Bezeichnung("Computer der Tochter"))
+  .schürfe()
+  .onExceptionResumeNext(
+    Miner(Bezeichnung("Smartphone vom Kollegen")).schürfe()
+  )
+ </code></pre>
+            <div class="fragment">
+                <h3>Ausgabe</h3>
+                <pre><code data-trim data-noescape class="line-numbers">
+Wir werden reich! Neuer Block Block(inhalt=Computer der Tochter >> LTC: 0c892886-7422-4c69-8e93-82d1e51e7440)
+Wir werden reich! Neuer Block Block(inhalt=Smartphone vom Kollegen >> LTC: 960885e4-057d-4601-8c0a-4309209838a5)
+Wir werden reich! Neuer Block Block(inhalt=Smartphone vom Kollegen >> LTC: 3be16593-b380-410a-bd69-dbaa4b27211f)
+Wir werden reich! Neuer Block Block(inhalt=Smartphone vom Kollegen >> LTC: f7fb8853-cec2-40fb-9610-56358a2853c2)
+Mist schon wieder alle Rechner kaputt!
+                </code>
+                    </pre>
+            </div>
         </section>
         <section>
-            <h2>Marbles</h2>
-            <h3>Übersicht über ... Operatoren ...</h3>
-            <p>…</p>
+            <h2>Fehlerbehandlung</h2>
+            <h3>Hilfreiche Links</h3>
+            <ul>
+                <li><a href="https://github.com/ReactiveX/RxJava/wiki/Error-Handling">https://github.com/ReactiveX/RxJava/wiki/Error-Handling</a>
+                </li>
+                <li><a href="https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators">https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators   </a></li>
+            </ul>
+        </section>
+        <section data-background-iframe="https://rxmarbles.com"></section>
+        <section>
+            <h2>Aussicht</h2>
+            <ul>
+                <li>Nächste Schritte
+                    <ul>
+                        <li>Wir gehen in die Asynchronität mit RxJava Schedulers</li>
+                        <li>Wir schauen uns Kotlin Coroutines und Flow an</li>
+                        <li>Weiterentwicklung Weinachtsgeschichte</li>
+                    </ul>
+                </li>
+            </ul>
         </section>
         <section>
             <h2>Dokumentation</h2>
             <ul>
                 <li>Original-Quellen
                     <ul>
-                        <li>...</li>
+                        <li><a href="http://reactivex.io/intro.html">http://reactivex.io/intro.html</a></li>
+                        <li><a href="https://github.com/ReactiveX/RxJava/wiki">https://github.com/ReactiveX/RxJava/wiki</a></li>
+                        <li><a href="https://rxmarbles.com">https://rxmarbles.com</a></li>
+                    </ul>
+                </li>
+                <li>Dieses Dokument
+                    <ul>
+                        <li><a href="https://bergsee.consulting/workshops/customer-specific/css-a8Kh3-A2/teil2/">https://bergsee.consulting/workshops/customer-specific/css-a8Kh3-A2/teil2/</a></li>
                     </ul>
                 </li>
             </ul>
