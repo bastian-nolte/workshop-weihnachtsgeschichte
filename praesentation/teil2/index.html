@@ -966,10 +966,80 @@ Mist schon wieder alle Rechner kaputt!
             <ul>
                 <li><a href="https://github.com/ReactiveX/RxJava/wiki/Error-Handling">https://github.com/ReactiveX/RxJava/wiki/Error-Handling</a>
                 </li>
-                <li><a href="https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators">https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators   </a></li>
+                <li><a href="https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators">https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators</a></li>
+            </ul>
+        </section>
+        <section>
+            <h2>Operatoren</h2>
+            <h3>Hilfreiche Links</h3>
+            <ul>
+                <li><a href="https://github.com/ReactiveX/RxJava/wiki/Alphabetical-List-of-Observable-Operators">https://github.com/ReactiveX/RxJava/wiki/Alphabetical-List-of-Observable-Operators</a>
+                </li>
+                <li><a href="http://reactivex.io/documentation/operators.html">http://reactivex.io/documentation/operators.html</a></li>
             </ul>
         </section>
         <section data-background-iframe="https://rxmarbles.com"></section>
+        <section data-transition="fade-in" style="height: 18em">
+            <h2>Fibonacci Code Kata</h2>
+            <ul>
+                <li>Erstelle und subscribe ein Observable.</li>
+                <li>Emittiere eine Reihe von Zahlen (Int) der Fibonacci-Folge.</li>
+                <li>Beginne mit der Zahl 1</li>
+                <li>Liefere so lange Zahlen bis bei der Berechnung eine ArithmeticException (integer overflow) geworfen wird.</li>
+                <li>Wenn dieser Fall eintritt beende die Ausgabe der Reihe</li>
+                <li>Im Subscribe-Block soll nicht onError angesprungen werden und es soll auch keine OnErrorNotImplementedException ausgelöst werden.</li>
+            </ul>
+            <p>Ausgabe
+            <pre><code data-trim data-noescape>
+1
+1
+2
+3
+…
+1836311903
+            </code></pre>
+            </p>
+            <h1>Achtung: Nächste Seite für Tips</h1>
+        </section>
+        <section>
+            <h2>Fibonacci Code Kata</h2>
+            <h3>Tip 1</h3>
+            <h3>Benutze «Observable.create»</h3>
+            <h1>Achtung: Nächste Seite für weitere Tips</h1>
+        </section>
+        <section>
+            <h2>Fibonacci Code Kata</h2>
+            <h3>Tip 2</h3>
+            <h3>Benutze while(!emitter.isDisposed) {…</h3>
+            <h1>Achtung: Nächste Seite für weitere Tips</h1>
+        </section>
+        <section>
+            <h2>Fibonacci Code Kata</h2>
+            <h3>Tip 3</h3>
+            <h3>Benutze «emitter.onNext» im while-Block</h3>
+            <h1>Achtung: Nächste Seite für Auflösung</h1>
+        </section>
+        <section data-transition="fade-in" style="height: 18em">
+            <h2>Fibonacci Code Kata</h2>
+            <h3>Auflösung</h3>
+            <pre><code data-trim data-noescape>
+Observable.create { emitter: ObservableEmitter&lt;Int&gt; -&gt;
+  var p = Pair(0, 1)
+  while (!emitter.isDisposed) {
+    emitter.onNext(p.second)
+    runCatching { p = Pair(p.second, Math.addExact(p.first, p.second)) }.onFailure { emitter.onComplete() }
+  }
+}.subscribe(::println)</code></pre>
+            <p>Variante 2</p>
+            <pre><code data-trim data-noescape>
+Observable.just(Pair(0, 1))
+  .repeat()
+  .scan { p, _ -> Pair(p.second, Math.addExact(p.first, p.second)) }
+  .map { it.second }
+  .onErrorResumeNext(Observable.empty())
+  .subscribe(::println)</code></pre>
+
+        </section>
         <section>
             <h2>Aussicht</h2>
             <ul>
