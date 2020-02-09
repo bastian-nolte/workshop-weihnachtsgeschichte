@@ -966,7 +966,8 @@ Mist schon wieder alle Rechner kaputt!
             <ul>
                 <li><a href="https://github.com/ReactiveX/RxJava/wiki/Error-Handling">https://github.com/ReactiveX/RxJava/wiki/Error-Handling</a>
                 </li>
-                <li><a href="https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators">https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators</a></li>
+                <li><a href="https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators">https://github.com/ReactiveX/RxJava/wiki/Error-Handling-Operators</a>
+                </li>
             </ul>
         </section>
         <section>
@@ -987,7 +988,9 @@ Mist schon wieder alle Rechner kaputt!
                 <li>Beginne mit der Zahl 1</li>
                 <li>Liefere so lange Zahlen bis bei der Berechnung eine ArithmeticException (integer overflow) geworfen wird.</li>
                 <li>Wenn dieser Fall eintritt beende die Ausgabe der Reihe</li>
-                <li>Im Subscribe-Block soll nicht onError angesprungen werden und es soll auch keine OnErrorNotImplementedException ausgelöst werden.</li>
+                <li>Im Subscribe-Block soll nicht onError angesprungen werden und es soll auch keine OnErrorNotImplementedException
+                    ausgelöst werden.
+                </li>
             </ul>
             <p>Ausgabe
             <pre><code data-trim data-noescape>
@@ -1022,8 +1025,9 @@ Mist schon wieder alle Rechner kaputt!
         <section data-transition="fade-in" style="height: 18em">
             <h2>Fibonacci Code Kata</h2>
             <h3>Auflösung</h3>
-            <p class="fragment">Variante 1</p>
-            <pre><code data-trim data-noescape>
+            <div class="fragment">
+                <p>Variante 1</p>
+                <pre><code data-trim data-noescape>
 Observable.create { emitter: ObservableEmitter&lt;Int&gt; -&gt;
   var p = Pair(0, 1)
   while (!emitter.isDisposed) {
@@ -1031,15 +1035,17 @@ Observable.create { emitter: ObservableEmitter&lt;Int&gt; -&gt;
     runCatching { p = Pair(p.second, Math.addExact(p.first, p.second)) }.onFailure { emitter.onComplete() }
   }
 }.subscribe(::println)</code></pre>
-            <p class="fragment">Variante 2</p>
-            <pre><code data-trim data-noescape>
+            </div>
+            <div class="fragment">
+                <p>Variante 2</p>
+                <pre><code data-trim data-noescape>
 Observable.just(Pair(0, 1))
   .repeat()
   .scan { p, _ -> Pair(p.second, Math.addExact(p.first, p.second)) }
   .map { it.second }
   .onErrorResumeNext(Observable.empty())
   .subscribe(::println)</code></pre>
-
+            </div>
         </section>
         <section>
             <h2>Aussicht</h2>
@@ -1065,7 +1071,8 @@ Observable.just(Pair(0, 1))
                 </li>
                 <li>Dieses Dokument
                     <ul>
-                        <li><a href="https://bergsee.consulting/workshops/customer-specific/css-a8Kh3-A2/teil2/">https://bergsee.consulting/workshops/customer-specific/css-a8Kh3-A2/teil2/</a></li>
+                        <li><a href="https://bergsee.consulting/workshops/customer-specific/css-a8Kh3-A2/teil2/">https://bergsee.consulting/workshops/customer-specific/css-a8Kh3-A2/teil2/</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
