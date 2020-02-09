@@ -17,19 +17,17 @@ fun main() {
 }
 
 class Farm() {
-    fun schürfe() =
-            Minenarbeiter(Bezeichnung("Computer der Tochter"))
-                    .schürfe()
-                    .onExceptionResumeNext(
-                            Minenarbeiter(Bezeichnung("Smartphone vom Kollegen")).schürfe()
-                    )
+    fun schürfe() = Miner(Bezeichnung("Computer der Tochter"))
+            .schürfe()
+            .onExceptionResumeNext(
+                    Miner(Bezeichnung("Smartphone vom Kollegen"))
+                            .schürfe())
 }
 
-class Minenarbeiter(var bezeichnung: Bezeichnung) {
-    fun schürfe() =
-            Observable
-                    .fromIterable(0..Int.MAX_VALUE)
-                    .map { sehrKomplexeBerechnung(bezeichnung) }
+class Miner(var bezeichnung: Bezeichnung) {
+    fun schürfe() = Observable
+            .fromIterable(0..Int.MAX_VALUE)
+            .map { sehrKomplexeBerechnung(bezeichnung) }
 
     private fun sehrKomplexeBerechnung(bezeichnung: Bezeichnung): Block {
         if (0.7f < Math.random()) throw RuntimeException("CPU ist überhitzt.")

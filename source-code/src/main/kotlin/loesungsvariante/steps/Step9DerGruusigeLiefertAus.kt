@@ -9,17 +9,17 @@ import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.`drucke in Farbe`
 import java.io.File
 
 fun main() {
-    val gruusige = Gruusige()
-    val lustighuusen = Lustighuusen(`einwohner aus Datei lesen`(), gruusige)
-    // Neues 2 >>
-    with(lustighuusen) {
+    Lustighuusen(
+            `einwohner aus Datei lesen`(),
+            Gruusige()
+    ).run {
         (1..25).forEach {
-            val zufaelligerEinwohner = einwohner.random()
-            val geschenk = fabrik.`erstelle Geschenk zufälligen Typs`()
-            gruusige.`liefere Geschenk an Einwohner`(geschenk, zufaelligerEinwohner)
+            gruusige.`liefere Geschenk an Einwohner`(
+                    fabrik.`erstelle Geschenk zufälligen Typs`(),
+                    `zufälliger Einwohner`
+            )
         }
     }
-    // << eoNeues2
 }
 
 fun `einwohner aus Datei lesen`(): Set<Einwohner> {
@@ -31,7 +31,11 @@ fun `einwohner aus Datei lesen`(): Set<Einwohner> {
 class Lustighuusen(val einwohner: Set<Einwohner>, val gruusige: Gruusige) {
     var guteLauneIndex: Int = 100
         private set
+
     val fabrik = Fabrik()
+
+    val `zufälliger Einwohner`
+        get() = einwohner.random()
 }
 
 class Einwohner(val name: String) {
@@ -56,14 +60,19 @@ class Einwohner(val name: String) {
 class Gruusige {
     // Neues 1 >>
     fun `liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner: Einwohner) {
-        `drucke in Farbe`(Farbe.GRUEN, "Der Grinch liefert ${geschenk.geschlecht.unbestimmterArtikel(Fall.AKKUSATIV)} ${geschenk.beschreibung} an ${einwohner.name}. 🥶")
+        `drucke in Farbe`(Farbe.GRUEN, "Der Gruusige liefert ${geschenk.geschlecht.unbestimmterArtikel(Fall.AKKUSATIV)} ${geschenk.beschreibung} an ${einwohner.name} aus 🥶.")
         einwohner.`nehme Geschenk an`(geschenk)
     }
     // << eoNeues 1
 }
 
 class Fabrik {
-    private val geschenkeMaschine: Set<() -> Geschenk> = setOf({ Fahrrad() }, { Bonbon() }, { Kuscheltier() }, { Katze() })
+    private val geschenkeMaschine: Set<() -> Geschenk> = setOf(
+            { Fahrrad() },
+            { Bonbon() },
+            { Kuscheltier() },
+            { Katze() }
+    )
 
     fun `erstelle Geschenk zufälligen Typs`() = geschenkeMaschine.random().invoke()
 }

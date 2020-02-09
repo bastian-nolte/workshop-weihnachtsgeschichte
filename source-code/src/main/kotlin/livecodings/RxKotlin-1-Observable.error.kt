@@ -4,7 +4,6 @@ package app.codedojo.kata.weihnachtsgeschichte.livecodings.rxk1
 
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
-import java.lang.IllegalStateException
 
 fun main() {
     Fahrzeug(Fahrer("Benno"))

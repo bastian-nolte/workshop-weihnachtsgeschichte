@@ -12,6 +12,6 @@ fun main() {
             .doOnError { println("$it war wohl zu schnell 😅") }
             .subscribeBy(
                     onNext = { println("Aktueller Wert ist $it") },
-                    onError = { println("Fehler aufgtraten: $it") }
+                    onError = { println("Fehler aufgetreten: $it") }
             )
 }
