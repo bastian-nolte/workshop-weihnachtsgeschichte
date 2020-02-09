@@ -12,7 +12,7 @@ import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.`drucke in Farbe`
 import java.io.File
 
 fun main() {
-    with(Lustighuusen(`einwohner aus Datei lesen`(), Gruusige())) {
+    Lustighuusen(`einwohner aus Datei lesen`(), Gruusige()).run {
         `einwohner ausgeben`(einwohner)
 
         for (i in 1..25) {
@@ -44,7 +44,10 @@ class Lustighuusen(val einwohner: Set<Einwohner>, val gruusige: Gruusige) {
     var guteLauneIndex: Int = 100
         private set
 
-    val fabrik: Fabrik = Fabrik()
+    val fabrik = Fabrik()
+
+    val `zufälliger Einwohner`
+        get() = einwohner.random()
 }
 
 class Einwohner(val name: String) {
@@ -52,7 +55,7 @@ class Einwohner(val name: String) {
         private set
 
     fun `nehme Geschenk an`(geschenk: Geschenk) {
-        `drucke in Farbe`(Farbe.GELB, "$name nimmt ${geschenk.name} entgegen 🥰")
+        `drucke in Farbe`(Farbe.GELB, "${this.name} nimmt ${geschenk.name} entgegen. 🥰")
         `spiele mit Geschenk`(geschenk)
     }
 
