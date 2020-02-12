@@ -1,4 +1,4 @@
-@file:Suppress("NonAsciiCharacters", "FunctionName", "unused", "DuplicatedCode")
+@file:Suppress("FunctionName", "unused", "SpellCheckingInspection", "NonAsciiCharacters", "PropertyName")
 
 package app.codedojo.kata.weihnachtsgeschichte.loesungsvariante
 
@@ -6,46 +6,40 @@ import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Fall
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Farbe
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Geschlecht
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.`drucke in Farbe`
-import io.reactivex.Emitter
 import io.reactivex.Observable
 import java.io.File
-import java.util.concurrent.CompletableFuture
-import kotlin.properties.Delegates
-import kotlin.random.Random
-
+import java.time.Duration
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.atomic.AtomicInteger
 
 fun main() {
-    val lustighausen = Lustighuusen(`einwohner aus Datei lesen`(), Gruusige())
-    var produktionAbgeschlossen = false
+    Lustighuusen(`einwohner aus Datei lesen`(), Gruusige()).run {
+        Fabrik(5)
+                .`produziere geschenke zufälligen Typs`(10)
+                .subscribe { geschenk ->
+                    println("Fabrik hat neues Geschenk ${geschenk.name} im Thread ${Thread.currentThread().name} fertiggestellt.")
+                    gruusige.`liefere Geschenk an Einwohner`(geschenk, einwohner.random())
+                }
 
-    lustighausen.fabrik.produzierteGeschenkeRxObservable
-            .subscribe(
-                    { neuesGeschenk -> lustighausen.gruusige.`liefere Geschenk an Einwohner`(neuesGeschenk, lustighausen.`ein zufälliger Einwohner`()) },
-                    {},
-                    { produktionAbgeschlossen = true }
-            )
-
-    lustighausen.fabrik.produziereGeschenke(anzahl = 15)
-
-    while (!produktionAbgeschlossen) {
-        // Never ends
-        Thread.sleep(100)
+        Thread.sleep(Long.MAX_VALUE)
     }
 }
 
 fun `einwohner aus Datei lesen`(): Set<Einwohner> {
-    return File("src/main/resources/vornamen.txt").useLines {
-        it.map { name -> Einwohner(name) }.toSet()
+    return File("src/main/resources/vornamen.txt").useLines { vornamen ->
+        vornamen.map { vorname -> Einwohner(vorname) }.toSet()
     }
 }
 
-
 class Lustighuusen(val einwohner: Set<Einwohner>, val gruusige: Gruusige) {
+    // Aufgabe 1: Ändern in computed getter der den Durchschnitt des GuteLauneIndex ausgibt.
     var guteLauneIndex: Int = 100
         private set
 
     val fabrik = Fabrik()
-    fun `ein zufälliger Einwohner`() = einwohner.random()
+
+    val `zufälliger Einwohner`
+        get() = einwohner.random()
 }
 
 class Einwohner(val name: String) {
@@ -57,93 +51,82 @@ class Einwohner(val name: String) {
         `spiele mit Geschenk`(geschenk)
     }
 
-    private fun `spiele mit Geschenk`(geschenk: Geschenk) {
-        when (geschenk) {
-            is Fahrrad -> `drucke in Farbe`(Farbe.ROT, "$name fährt schreiend gegen Auto vom Nachbarn. 😡")
-            is Bonbon -> `drucke in Farbe`(Farbe.ROT, "$name schnieft wegen der Schärfe. 🤧")
-            is Kuscheltier -> `drucke in Farbe`(Farbe.ROT, "$name kratzt sich die Haut auf. 🤬")
-            is Katze -> `drucke in Farbe`(Farbe.ROT, "$name wird vom Arzt genäht. ☠️")
-        }
-    }
+    private fun `spiele mit Geschenk`(geschenk: Geschenk) =
+            when (geschenk) {
+                is T100 -> `drucke in Farbe`(Farbe.ROT, "$name wird vom T100 gepeinigt 🤬🤯")
+                is BenutzteWindel -> `drucke in Farbe`(Farbe.ROT, "$name muss sich übergeben 🤮")
+                is VerrueckterDueuetscher -> `drucke in Farbe`(Farbe.ROT, "$name wird sehr unfründlich genervt! Alle ussschaffe! 🚔")
+                is SalzigerSchokkiKuss -> `drucke in Farbe`(Farbe.ROT, "$name zieht sich alles im Mund zusammen 🤢")
+                is DefektesFahrrad -> `drucke in Farbe`(Farbe.ROT, "$name fährt gegen das Auto des Nachbarn. Das wird teuer! 🚲 🤕")
+            }
 }
 
 class Gruusige {
     fun `liefere Geschenk an Einwohner`(geschenk: Geschenk, einwohner: Einwohner) {
-        `drucke in Farbe`(Farbe.GRUEN, "Der Grinch liefert ${geschenk.geschlecht.unbestimmterArtikel(Fall.AKKUSATIV)} ${geschenk.beschreibung} an ${einwohner.name}. 🥶")
+        `drucke in Farbe`(Farbe.GRUEN, "Der Gruusige liefert ${geschenk.geschlecht.unbestimmterArtikel(Fall.AKKUSATIV)} ${geschenk.beschreibung} an ${einwohner.name} aus 🥶.")
         einwohner.`nehme Geschenk an`(geschenk)
     }
 }
 
+class Fabrik(
+        val anzahlMaschinen: Int = 3
+) {
+    private val geschenkeMaschine: Set<Produktionseinheit> = setOf(
+            Produktionseinheit(Güterart("T100"), Duration.ofSeconds(8)) { T100() },
+            Produktionseinheit(Güterart("Defektes Faherrad"), Duration.ofSeconds(6)) { DefektesFahrrad() },
+            Produktionseinheit(Güterart("Verrückter Düütscher"), Duration.ofSeconds(4)) { VerrueckterDueuetscher() },
+            Produktionseinheit(Güterart("Benutzte Windel"), Duration.ofSeconds(2)) { BenutzteWindel() },
+            Produktionseinheit(Güterart("Salziger Schokkikuss"), Duration.ofSeconds(2)) { SalzigerSchokkiKuss() }
+    )
 
-class Fabrik {
-    /**
-     * Ein Set von Funktionen die bei Aufruf jeweils eine andere Instanz eines Geschenkes liefern.
-     */
-    private val geschenkeMaschine: Set<() -> Geschenk> = setOf({ Fahrrad() }, { Bonbon() }, { Kuscheltier() }, { Katze() })
-
-    private fun `erstelle Geschenk zufälligen Typs`(): CompletableFuture<Unit> = CompletableFuture.supplyAsync {
-        val geschenk = geschenkeMaschine.random().invoke()
-        `drucke in Farbe`(Farbe.BRAUN, "Fabrik beginnt Produktion von: ${geschenk.name}.")
-
-        Thread.sleep(Random.nextLong(100, 1000))
-        `drucke in Farbe`(Farbe.BRAUN, "Fabrik hat die Produktion von ${geschenk.name} abgeschlossen.")
-
-        emitter.onNext(geschenk)
-        nochZuProduzieren -= 1
+    fun `produziere geschenke zufälligen Typs`(anzahlGeschenke: Int = 5): Observable<Geschenk> {
+        return Observable
+                .range(1, anzahlGeschenke)
+                .flatMap(
+                        {
+                            `wähle Produktionseinheit zufälligen Typs`()
+                                    .produziere()
+                                    .doOnError { println("Es ist ein Fehler bei der Produktion aufgetreten: $it.") }
+                                    .onErrorResumeNext(Observable.empty())
+                        },
+                        anzahlMaschinen
+                )
     }
 
+    fun `wähle Produktionseinheit zufälligen Typs`() = geschenkeMaschine.random()
+}
 
-    /**
-     * Ein Geschenk-Emmitter
-     */
-    private lateinit var emitter: Emitter<Geschenk>
-
-    /**
-     * Delegierte Eigenschaft mit der Information, wie viele Einheiten noch zu produzieren sind.
-     */
-    private var nochZuProduzieren: Int by Delegates.observable(0) { _, _, new ->
-        if (new == 0) emitter.onComplete()
+class Produktionseinheit(
+        val güterart: Güterart,
+        val dauer: Duration,
+        val prozess: () -> Geschenk
+) {
+    companion object {
+        var seriennummer = AtomicInteger(0)
     }
 
+    fun produziere(): Observable<Geschenk> {
+        runCatching {
+            val bezeichner = "${güterart.bezeichner} [${seriennummer.incrementAndGet()}]"
 
-    val produzierteGeschenkeRxObservable = Observable.create<Geschenk> { this.emitter = it }
-
-    /**
-     * Produziert die übergebenen Anzahl von Geschenken mit einer Zeitverzögerung von 0.1 bis eine Sekunde pro Geschenk.
-     * @param anzahl Die Anzahl der zu produzierenden Geschenke.
-     */
-    fun produziereGeschenke(anzahl: Int) {
-        nochZuProduzieren += anzahl
-        repeat(anzahl) { `erstelle Geschenk zufälligen Typs`() }
+            return Observable
+                    .timer(10, TimeUnit.MILLISECONDS)
+                    .doOnSubscribe { println("Beginne Produktion von ${bezeichner}…") }
+                    .map {
+                        Thread.sleep(dauer.toMillis()) // Aufwändiger Produktionsprozess!
+                        prozess()
+                    }
+                    .doAfterNext { println("Produktion von  ${bezeichner} abgeschlossen.") }
+        }.getOrElse { return Observable.error(RuntimeException("Maschine explodiert.")) }
     }
 }
 
-sealed class Geschenk(
-        val name: String,
-        val geschlecht: Geschlecht,
-        val beschreibung: String,
-        val stimmungspunkte: Int)
+inline class Güterart(val bezeichner: String)
 
-class Fahrrad : Geschenk(
-        name = "Fahrrad",
-        geschlecht = Geschlecht.SACHLICH,
-        beschreibung = "Fahrrad dessen Bremse ab und zu ausfällt",
-        stimmungspunkte = 70)
+sealed class Geschenk(val name: String, val geschlecht: Geschlecht, val beschreibung: String, val stimmungspunkte: Int)
 
-class Bonbon : Geschenk(
-        name = "Bonbon",
-        geschlecht = Geschlecht.SACHLICH,
-        beschreibung = "Bonbon mit sehr scharfer Füllung",
-        stimmungspunkte = 20)
-
-class Kuscheltier : Geschenk(
-        name = "Kuscheltier",
-        geschlecht = Geschlecht.SACHLICH,
-        beschreibung = "Kuscheltier mit Flöhen im Fell",
-        stimmungspunkte = 50)
-
-class Katze : Geschenk(
-        name = "Katze",
-        geschlecht = Geschlecht.WEIBLICH,
-        beschreibung = "sehr bissige Katze",
-        stimmungspunkte = 45)
+class T100 : Geschenk("T100", Geschlecht.MÄNNLICH, "Roboter mit feindlicher Einstellung", 80)
+class BenutzteWindel : Geschenk("benutzte Windel", Geschlecht.WEIBLICH, "Windel die sehr stark stinkt", 30)
+class VerrueckterDueuetscher : Geschenk("verrückten Düütschen", Geschlecht.MÄNNLICH, "Menschen mit germanischen Wurzeln der echt verrückt ist", 45)
+class SalzigerSchokkiKuss : Geschenk("sehr salzigen Schokkikuss", Geschlecht.MÄNNLICH, "Schokkikuss der ganz ekelig schmeckt", 25)
+class DefektesFahrrad : Geschenk("defektes Rad", Geschlecht.SACHLICH, "Fahrrad dessen Bremse nicht immer funktioniert", 60)
