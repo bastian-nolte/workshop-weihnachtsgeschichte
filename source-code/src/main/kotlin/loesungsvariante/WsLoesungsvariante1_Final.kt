@@ -1,4 +1,4 @@
-@file:Suppress("FunctionName", "unused", "SpellCheckingInspection", "NonAsciiCharacters", "PropertyName")
+@file:Suppress("FunctionName", "unused", "SpellCheckingInspection", "NonAsciiCharacters", "PropertyName", "LocalVariableName")
 
 package app.codedojo.kata.weihnachtsgeschichte.loesungsvariante
 
@@ -7,9 +7,9 @@ import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Farbe
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.Geschlecht
 import app.codedojo.kata.weihnachtsgeschichte.vorbereitet.`drucke in Farbe`
 import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import java.io.File
 import java.time.Duration
-import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 
 fun main() {
@@ -17,7 +17,7 @@ fun main() {
         Fabrik(5)
                 .`produziere geschenke zufälligen Typs`(10)
                 .subscribe { geschenk ->
-                    println("Fabrik hat neues Geschenk ${geschenk.name} im Thread ${Thread.currentThread().name} fertiggestellt.")
+                    println("Fabrik hat neues Geschenk ${geschenk.bezeichner} im Thread ${Thread.currentThread().name} fertiggestellt.")
                     gruusige.`liefere Geschenk an Einwohner`(geschenk, einwohner.random())
                 }
 
@@ -47,7 +47,7 @@ class Einwohner(val name: String) {
         private set
 
     fun `nehme Geschenk an`(geschenk: Geschenk) {
-        `drucke in Farbe`(Farbe.GELB, "${this.name} nimmt ${geschenk.name} entgegen. 🥰")
+        `drucke in Farbe`(Farbe.GELB, "${this.name} nimmt ${geschenk.bezeichner} entgegen. 🥰")
         `spiele mit Geschenk`(geschenk)
     }
 
@@ -72,16 +72,16 @@ class Fabrik(
         val anzahlMaschinen: Int = 3
 ) {
     private val geschenkeMaschine: Set<Produktionseinheit> = setOf(
-            Produktionseinheit(Güterart("T100"), Duration.ofSeconds(8)) { T100() },
-            Produktionseinheit(Güterart("Defektes Faherrad"), Duration.ofSeconds(6)) { DefektesFahrrad() },
-            Produktionseinheit(Güterart("Verrückter Düütscher"), Duration.ofSeconds(4)) { VerrueckterDueuetscher() },
-            Produktionseinheit(Güterart("Benutzte Windel"), Duration.ofSeconds(2)) { BenutzteWindel() },
-            Produktionseinheit(Güterart("Salziger Schokkikuss"), Duration.ofSeconds(2)) { SalzigerSchokkiKuss() }
+            Produktionseinheit(Güterart("T100"), Duration.ofSeconds(8)) { seriennummer -> T100(seriennummer) },
+            Produktionseinheit(Güterart("Defektes Faherrad"), Duration.ofSeconds(6)) { seriennummer -> DefektesFahrrad(seriennummer) },
+            Produktionseinheit(Güterart("Verrückter Düütscher"), Duration.ofSeconds(4)) { seriennummer -> VerrueckterDueuetscher(seriennummer) },
+            Produktionseinheit(Güterart("Benutzte Windel"), Duration.ofSeconds(2)) { seriennummer -> BenutzteWindel(seriennummer) },
+            Produktionseinheit(Güterart("Salziger Schokkikuss"), Duration.ofSeconds(2)) { seriennummer -> SalzigerSchokkiKuss(seriennummer) }
     )
 
     fun `produziere geschenke zufälligen Typs`(anzahlGeschenke: Int = 5): Observable<Geschenk> {
         return Observable
-                .range(1, anzahlGeschenke)
+                .range(1, anzahlGeschenke) // n > max , limit 5
                 .flatMap(
                         {
                             `wähle Produktionseinheit zufälligen Typs`()
@@ -90,7 +90,7 @@ class Fabrik(
                                     .onErrorResumeNext(Observable.empty())
                         },
                         anzahlMaschinen
-                )
+                ) // limit 5
     }
 
     fun `wähle Produktionseinheit zufälligen Typs`() = geschenkeMaschine.random()
@@ -99,7 +99,7 @@ class Fabrik(
 class Produktionseinheit(
         val güterart: Güterart,
         val dauer: Duration,
-        val prozess: () -> Geschenk
+        val prozess: (seriennummer: Int) -> Geschenk
 ) {
     companion object {
         var seriennummer = AtomicInteger(0)
@@ -107,26 +107,31 @@ class Produktionseinheit(
 
     fun produziere(): Observable<Geschenk> {
         runCatching {
-            val bezeichner = "${güterart.bezeichner} [${seriennummer.incrementAndGet()}]"
+            val `seriennnumer dieser Produktion` = seriennummer.incrementAndGet()
+            val bezeichner = "${güterart.bezeichner} [$`seriennnumer dieser Produktion`]"
 
             return Observable
-                    .timer(10, TimeUnit.MILLISECONDS)
-                    .doOnSubscribe { println("Beginne Produktion von ${bezeichner}…") }
-                    .map {
+                    .fromCallable {
+                        println("Beginne Produktion von  $bezeichner im Thread ${Thread.currentThread().name}…")
                         Thread.sleep(dauer.toMillis()) // Aufwändiger Produktionsprozess!
-                        prozess()
+                        println("Produktion von  $bezeichner im Thread ${Thread.currentThread().name} abgeschlossen.")
+                        prozess(`seriennnumer dieser Produktion`)
                     }
-                    .doAfterNext { println("Produktion von  ${bezeichner} abgeschlossen.") }
+                    .subscribeOn(Schedulers.io())
+                    .doOnSubscribe { println("Fordere Produktion von $bezeichner aus Thread ${Thread.currentThread().name} an…") }
         }.getOrElse { return Observable.error(RuntimeException("Maschine explodiert.")) }
     }
 }
 
 inline class Güterart(val bezeichner: String)
 
-sealed class Geschenk(val name: String, val geschlecht: Geschlecht, val beschreibung: String, val stimmungspunkte: Int)
+sealed class Geschenk(val name: String, val geschlecht: Geschlecht, val beschreibung: String, val stimmungspunkte: Int, val seriennummer: Int) {
+    val bezeichner
+        get() = "$name [$seriennummer]"
+}
 
-class T100 : Geschenk("T100", Geschlecht.MÄNNLICH, "Roboter mit feindlicher Einstellung", 80)
-class BenutzteWindel : Geschenk("benutzte Windel", Geschlecht.WEIBLICH, "Windel die sehr stark stinkt", 30)
-class VerrueckterDueuetscher : Geschenk("verrückten Düütschen", Geschlecht.MÄNNLICH, "Menschen mit germanischen Wurzeln der echt verrückt ist", 45)
-class SalzigerSchokkiKuss : Geschenk("sehr salzigen Schokkikuss", Geschlecht.MÄNNLICH, "Schokkikuss der ganz ekelig schmeckt", 25)
-class DefektesFahrrad : Geschenk("defektes Rad", Geschlecht.SACHLICH, "Fahrrad dessen Bremse nicht immer funktioniert", 60)
+class T100(seriennummer: Int) : Geschenk("T100", Geschlecht.MÄNNLICH, "Roboter mit feindlicher Einstellung", 80, seriennummer)
+class BenutzteWindel(seriennummer: Int) : Geschenk("benutzte Windel", Geschlecht.WEIBLICH, "Windel die sehr stark stinkt", 30, seriennummer)
+class VerrueckterDueuetscher(seriennummer: Int) : Geschenk("verrückten Düütschen", Geschlecht.MÄNNLICH, "Menschen mit germanischen Wurzeln der echt verrückt ist", 45, seriennummer)
+class SalzigerSchokkiKuss(seriennummer: Int) : Geschenk("sehr salzigen Schokkikuss", Geschlecht.MÄNNLICH, "Schokkikuss der ganz ekelig schmeckt", 25, seriennummer)
+class DefektesFahrrad(seriennummer: Int) : Geschenk("defektes Rad", Geschlecht.SACHLICH, "Fahrrad dessen Bremse nicht immer funktioniert", 60, seriennummer)
