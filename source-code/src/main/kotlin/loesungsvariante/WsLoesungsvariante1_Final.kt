@@ -92,7 +92,6 @@ class Fabrik(
                                     .onErrorResumeNext(Observable.empty())
                         },
                         anzahlMaschinen)
-
     }
 
     fun `wähle Produktionseinheit zufälligen Typs`() = geschenkeMaschine.random()
@@ -133,8 +132,7 @@ class Produktionseinheit(
 inline class Güterart(val bezeichner: String)
 
 sealed class Geschenk(val name: String, val geschlecht: Geschlecht, val beschreibung: String, val stimmungspunkte: Int, val seriennummer: Int) {
-    val bezeichner
-        get() = "$name [$seriennummer]"
+    val bezeichner by lazy { "$name [$seriennummer]" }
 }
 
 class T100(seriennummer: Int) : Geschenk("T100", Geschlecht.MÄNNLICH, "Roboter mit feindlicher Einstellung", 80, seriennummer)
