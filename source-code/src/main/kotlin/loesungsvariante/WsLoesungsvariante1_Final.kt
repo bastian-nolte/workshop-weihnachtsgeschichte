@@ -11,6 +11,7 @@ import io.reactivex.schedulers.Schedulers
 import java.io.File
 import java.time.Duration
 import java.util.concurrent.atomic.AtomicInteger
+import kotlin.random.Random
 
 fun main() {
     Lustighuusen(`einwohner aus Datei lesen`(), Gruusige()).run {
@@ -81,7 +82,7 @@ class Fabrik(
 
     fun `produziere geschenke zufälligen Typs`(anzahlGeschenke: Int = 5): Observable<Geschenk> {
         return Observable
-                .range(1, anzahlGeschenke) // n > max , limit 5
+                .range(1, anzahlGeschenke)
                 .flatMap(
                         {
                             `wähle Produktionseinheit zufälligen Typs`()
@@ -89,8 +90,7 @@ class Fabrik(
                                     .doOnError { println("Es ist ein Fehler bei der Produktion aufgetreten: $it.") }
                                     .onErrorResumeNext(Observable.empty())
                         },
-                        anzahlMaschinen
-                ) // limit 5
+                        anzahlMaschinen)
     }
 
     fun `wähle Produktionseinheit zufälligen Typs`() = geschenkeMaschine.random()
@@ -113,13 +113,18 @@ class Produktionseinheit(
             return Observable
                     .fromCallable {
                         println("Beginne Produktion von  $bezeichner im Thread ${Thread.currentThread().name}…")
-                        Thread.sleep(dauer.toMillis()) // Aufwändiger Produktionsprozess!
-                        println("Produktion von  $bezeichner im Thread ${Thread.currentThread().name} abgeschlossen.")
-                        prozess(`seriennnumer dieser Produktion`)
+                        `aufwändiger Produktionsprozess`(bezeichner, `seriennnumer dieser Produktion`)
                     }
                     .subscribeOn(Schedulers.io())
                     .doOnSubscribe { println("Fordere Produktion von $bezeichner aus Thread ${Thread.currentThread().name} an…") }
         }.getOrElse { return Observable.error(RuntimeException("Maschine explodiert.")) }
+    }
+
+    private fun `aufwändiger Produktionsprozess`(bezeichner: String, seriennnumer: Int): Geschenk {
+        Thread.sleep(dauer.toMillis()) // Aufwändiger Produktionsprozess!
+        if (Random.nextInt(0, 10) < 2) throw RuntimeException("Maschine überhitzt.")
+        println("Produktion von  $bezeichner im Thread ${Thread.currentThread().name} abgeschlossen.")
+        return prozess(seriennnumer)
     }
 }
 
